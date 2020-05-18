@@ -1,9 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var path = require("path");
 
 var app = express();
 app.set('view engine', 'ejs');
 app.use('/views', express.static('views'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
