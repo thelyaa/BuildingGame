@@ -11,6 +11,12 @@ app.get('/roles', function(req, res) {
     res.sendFile(__dirname + '/views/roles.html');
 });
 
+app.get('/', function (req, res) {
+    res.render('roles', {
+        title: 'RolesTest'
+    });
+});
+
 app.post('/roles', urlencodedParser, function(req, res) {
     if (!req.body) return res.sendStatus(400);
     console.log(req.body);
