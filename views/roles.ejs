@@ -4,3 +4,37 @@
 </head>
 <%= title %>
 <div id="testButton" onclick="getRole()">GET ROLE</div>
+<style>
+    .main {
+        display: flex;
+    }
+    .block {
+        width: 50%;
+    }
+</style>
+
+<div class="main">
+    <div class="block">
+        <form method="post" action="/roles">
+            <input type="radio" class="field" id="customer" name="field"><label>Покупатель</label><br>
+            <input type="radio" class="field" id="banker" name="field"><label>Банкир</label><br>
+            <input type="radio" class="field" id="contractor" name="field"><label>Поставщик</label><br>
+            <input type="radio" class="field" id="director" onchange="DirectorClick()" name="field"><label>Директор</label><br>
+            <label>Название фирмы</label><input type="text" id="firmName" disabled="true">
+            <label>Фирма</label>
+            <select name="firm">
+                <option value='director'>Директор</option>
+                <option value="builder">Строитель</option>
+                <option value="prorab">Прораб</option>
+                <option value="buh">Бухгалтер</option>
+            </select><br>
+            <input onclick="SendResult()" type="button" value="Выбрать">
+        </form>
+    </div>
+    
+    <input type="button" onclick="GetFirmList()" value="Получить список фирм">
+    
+    <div class="block">
+        <div id="firmList"></div>
+    </div>
+</div>

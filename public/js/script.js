@@ -23,7 +23,7 @@ function eraseCookie(name) {
 
 
 if(getCookie('userId')) {
-    alert(getCookie('userId'));
+
 } else {
     $.post('/getId', { field1: "hello", field2 : "hello2"},
         function(returnedData){
@@ -32,9 +32,34 @@ if(getCookie('userId')) {
 }
 
 
-function getRole() {
-    $.post('/getRole', { userId: getCookie('userId'), role : "test"},
+function DirectorClick(){
+    $("#firmName")[0].disabled = !$("#director")[0].checked;
+}
+
+var currentField;
+
+function SendResult(){
+    $(".field").each(function() {
+        if (this.checked) {
+            currentField = this.id;
+        }
+    });
+    
+    var firmName = document.getElementById("firmName").value;
+    $.post('/setRole', { userId: getCookie('userId'), role : currentField, firmName: firmName },
         function(returnedData){
             setCookie('userId', `${returnedData}`, 12);
         });
 }
+
+function GetFirmList(){
+    $.post('/getFirmList', {}, function(returnedData){
+        $("#firmList").text("")
+        console.log(returnedData);
+        returnedData.forEach(function(item){
+            $("#firmList").append(item.name + "<br>");
+        });
+    });
+    
+}
+

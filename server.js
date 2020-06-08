@@ -10,6 +10,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var lastId = 0;
+var lastFirmId = 0;
+
+var firmList = [];
+var userList = [];
+
+function Firm(name, directorId) {
+    this.name = name;
+    this.directorId = directorId;
+    this.firmId = lastFirmId++;
+    firmList.push(this);
+}
+
 
 function getLastId() {
     return `${lastId++}`;
@@ -29,14 +41,31 @@ app.post('/getId', function(req, res){
     res.send(getLastId());
 });
 
-app.post('/getRole', function(req, res){
-    console.log(req.body.role + "/ id: " + req.body.userId);
+app.post('/setRole', function(req, res){
+    console.log(req.body);
+    userList[req.body.userId] = req.body.role;
+    if(req.body.role === "director" && req.body.firmName !== null) {
+        var flag = false;
+        firmList.forEach(function(item) {
+            if (item.directorId === req.body.userId)
+                flag = true;
+                
+        });
+        if (!flag) new Firm(req.body.firmName, req.body.userId);
+    }
+    console.log(firmList);
+    console.log(userList)
 });
 
 app.post('/roles', function(req, res) {
     if (!req.body) return res.sendStatus(400);
     console.log(req.body);
     res.sendFile(__dirname + '/views/roles.html', { data: req.body});
+});
+
+app.post('/getFirmList', function(req, res) {
+    res.send(firmList);
+    console.log(firmList);
 });
 
 app.listen(3000);
