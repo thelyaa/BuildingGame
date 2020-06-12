@@ -115,3 +115,8 @@ dist
 .yarn/install-state.gz
 .pnp.*
 package-lock.json
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/BuildingGame.iml

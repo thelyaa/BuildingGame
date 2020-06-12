@@ -22,19 +22,15 @@
             <input type="radio" class="field" id="director" onchange="DirectorClick()" name="field"><label>Директор</label><br>
             <label>Название фирмы</label><input type="text" id="firmName" disabled="true">
             <label>Фирма</label>
-            <select name="firm">
-                <option value='director'>Директор</option>
-                <option value="builder">Строитель</option>
-                <option value="prorab">Прораб</option>
-                <option value="buh">Бухгалтер</option>
-            </select><br>
+            <div>Список текущих фирм:</div>
+            <div class="block">
+                <div id="firmList"></div>
+            </div>
             <input onclick="SendResult()" type="button" value="Выбрать">
         </form>
     </div>
     
     <input type="button" onclick="GetFirmList()" value="Получить список фирм">
     
-    <div class="block">
-        <div id="firmList"></div>
-    </div>
+
 </div>
