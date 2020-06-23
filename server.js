@@ -31,6 +31,14 @@ function Role(name, multi) {
     this.name = name;
     this.userId;
     this.multi = multi;
+    this.idList = [];
+    this.setUser = function(userId) {
+        if(this.multi) {
+            this.idList.push(userId);
+        } else {
+            this.userId = userId;
+        }
+    }
 }
 
 /**
@@ -49,7 +57,8 @@ function Firm(name, directorId) {
         financer: new Role("Бухгалтер"),
         builders: new Role("Строитель", true)
     }
-    this.roles.director.userId = directorId;
+    this.roles.director.setUser(directorId);
+
     firmList.push(this);
 }
 
@@ -113,7 +122,8 @@ app.post('/setRole', function(req, res){
             } else {
 
                 // redirect to waiting screen
-                getFirmById(req.body.firmId).roles[req.body.role].userId = req.body.userId;
+                getFirmById(req.body.firmId).roles[req.body.role].setUser(req.body.userId);
+                res.send({success: true});
             }
         } else {
             if(mainRoles[req.body.role].userId) {
@@ -121,7 +131,8 @@ app.post('/setRole', function(req, res){
             } else {
 
                 // redirect to waiting screen
-                mainRoles[req.body.role].userId = req.body.userId;
+                mainRoles[req.body.role].setUser(req.body.userId);
+                res.send({success: true});
             }
         }
     }
