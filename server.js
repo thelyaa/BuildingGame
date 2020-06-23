@@ -217,6 +217,8 @@ var currentContractorRequests = [];
 function Request(firmId, value) {
     this.firm = getFirmById(firmId);
     this.value = value;
+    this.status = 0; // 0 - не выдано, 1 - выдано
+    this.price = 0;
     currentContractorRequests.push(this);
 }
 
@@ -224,6 +226,13 @@ app.post('/materialRequest', function(req, res) {
     new Request(req.body.firmId, req.body.request);
     res.send({success: true});
 });
+
+var currentPrices = {};
+
+app.post('/setPrices', function(req,res) {
+    currentPrices = req.body.prices;
+    res.send({success: true});
+})
 
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
