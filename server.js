@@ -52,6 +52,7 @@ function Firm(name, directorId) {
     this.name = name;
     this.directorId = directorId;
     this.firmId = lastFirmId++;
+    this.debt = 0;
     this.roles = {
         director: new Role("Директор"),
         foreman: new Role("Прораб"),
@@ -171,6 +172,10 @@ app.get('/bankerScreen', function(req, res){
     res.render('bankerScreen', {
         title: 'банкир'
     });
+});
+
+app.post('/giveMoneyToFirm', function(req, res) {
+    getFirmById(req.body.firmId).debt += req.body.value;
 });
 
 app.listen(3000);
