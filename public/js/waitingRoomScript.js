@@ -32,6 +32,9 @@ function checkStatus() {
         if (returnedData.gameStarted) 
             {
                 console.log("gameStarted");
+                if (getCookie("role") === "director") {
+                    window.location.href = "/directorScreen";
+                }
                 //window.location.href = "/"
             }
         else console.log("gameNotStarted");
@@ -41,6 +44,9 @@ function checkStatus() {
 
 function startGame() {
     $.post("/startGame");
+    if (getCookie("role") === "banker") {
+        window.location.href = "/bankerScreen";
+    }
 }
 
-setInterval(checkStatus, 2000);
+setInterval(checkStatus, 10000);

@@ -23,14 +23,37 @@ function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
 
+var firmId;
+
 function GetFirmInfo(){
     var directorId = getCookie("userId");
     var htmlPage;
     $.post("/getFirmByDirectorId", {userId: directorId}, function(data){
         htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;
-        htmlPage += data.inventory.materialList;    
-    });
-    $("#main").html(htmlPage);
+        htmlPage += '<p>' + data.inventory.materialList;  
+        $("#main").html(htmlPage);
+        firmId = data.firmId;
+    });  
 }
 
 GetFirmInfo();
+setInterval(GetFirmInfo, 10000);
+
+function SendRequest(){
+    var requestObj = {};
+    $(".field").each(function() {
+        if (this.checked) {
+            requestObj[this.id] = $("#" + this.id + "Inp").val();
+        }
+    });
+    console.log(requestObj);
+    $.post('/materialRequest', { firmId: firmId, request: requestObj}, function(data){
+        if (data.success) alert("заявка отправлена"); 
+    });
+}
+
+function GetPrices(){
+    $.post("/checkPrices", {}, function(data){
+        
+    })
+}
