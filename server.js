@@ -211,4 +211,8 @@ app.post('/getFirmByDirectorId', function(req, res) {
     });
 });
 
+app.get('/directorScreen', function(req, res){
+    res.render('directorScreen');
+});
+
 app.listen(3000);
