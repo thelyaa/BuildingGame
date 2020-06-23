@@ -175,7 +175,7 @@ app.get('/bankerScreen', function(req, res){
 });
 
 app.post('/giveMoneyToFirm', function(req, res) {
-    getFirmById(req.body.firmId).debt += req.body.value;
+    getFirmById(req.body.firmId).debt += Number(req.body.value);
 });
 
 app.listen(3000);
