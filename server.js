@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 var lastId = 0;
 var lastFirmId = 0;
+var isGameStarted = false;
 
 var firmList = [];
 var userList = [];
@@ -150,6 +151,14 @@ app.post('/roles', function(req, res) {
  */
 app.post('/getFirmList', function(req, res) {
     res.send(firmList);
+});
+
+app.post('/checkStatus', function(req, res) {
+   res.send({gameStarted: isGameStarted});
+});
+
+app.post('/startGame', function(req, res) {
+    isGameStarted = true;
 });
 
 app.listen(3000);
