@@ -16,6 +16,10 @@ var isGameStarted = false;
 var firmList = [];
 var userList = [];
 
+var SETTINGS = {
+    DEFAULT_FIRM_CAPITAL: 100000,
+}
+
 var mainRoles = {
     customer: new Role("Покупатель"),
     banker: new Role('Банкир'),
@@ -42,6 +46,23 @@ function Role(name, multi) {
     }
 }
 
+function Inventory() {
+    this.materialList = {
+        material1: 0,
+        material2: 0,
+        material3: 0
+    }
+
+    this.add = function(name, count) {
+        this.materialList[name] += Number(count);
+    }
+
+    this.take = function(name, count) {
+        if(this.materialList[name] < count) return "Недостаточно материалов";
+        else this.materialList[name] -= Number(count);
+    }
+}
+
 /**
  * Класс фирмы
  * @param name - название фирмы
@@ -53,6 +74,8 @@ function Firm(name, directorId) {
     this.directorId = directorId;
     this.firmId = lastFirmId++;
     this.debt = 0;
+    this.balance = SETTINGS.DEFAULT_FIRM_CAPITAL;
+    this.inventory = new Inventory();
     this.roles = {
         director: new Role("Директор"),
         foreman: new Role("Прораб"),
@@ -105,7 +128,6 @@ function getFirmById(id) {
  * Установка роли
  */
 app.post('/setRole', function(req, res){
-    console.log(req.body);
     userList[req.body.userId] = req.body.role;
     if(req.body.role === "director" && req.body.firmName !== null) {
         var flag = false;
@@ -138,7 +160,6 @@ app.post('/setRole', function(req, res){
             }
         }
     }
-    console.log(firmList[0].roles.foreman);
 });
 
 app.post('/roles', function(req, res) {
@@ -177,5 +198,7 @@ app.get('/bankerScreen', function(req, res){
 app.post('/giveMoneyToFirm', function(req, res) {
     getFirmById(req.body.firmId).debt += Number(req.body.value);
 });
+
+
 
 app.listen(3000);
