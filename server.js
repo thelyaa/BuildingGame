@@ -196,7 +196,9 @@ app.get('/bankerScreen', function(req, res){
 });
 
 app.post('/giveMoneyToFirm', function(req, res) {
-    getFirmById(req.body.firmId).debt += Number(req.body.value);
+    var firm = getFirmById(req.body.firmId);
+    firm.debt += Number(req.body.value);
+    firm.balance += Number(req.body.value);
 });
 
 app.post('/getFirmByDirectorId', function(req, res) {
