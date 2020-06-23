@@ -153,12 +153,24 @@ app.post('/getFirmList', function(req, res) {
     res.send(firmList);
 });
 
+app.get('/waitingRoom', function (req, res) {
+    res.render('waitingRoom', {
+        title: 'Ожидание'
+    });
+});
+
 app.post('/checkStatus', function(req, res) {
    res.send({gameStarted: isGameStarted});
 });
 
 app.post('/startGame', function(req, res) {
     isGameStarted = true;
+});
+
+app.get('/bankerScreen', function(req, res){
+    res.render('bankerScreen', {
+        title: 'банкир'
+    });
 });
 
 app.listen(3000);

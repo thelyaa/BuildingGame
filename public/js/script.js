@@ -7,6 +7,7 @@ function setCookie(name,value,days) {
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
+
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -20,7 +21,6 @@ function getCookie(name) {
 function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
-
 
 if(getCookie('userId')) {
 
@@ -62,6 +62,10 @@ function SendResult(){
         function(returnedData){
             if(returnedData.error) {
                 alert(returnedData.error);
+            }
+            else{
+                setCookie("role", resultRole, 12);
+                window.location.href = "/waitingRoom";
             }
         });
 }
