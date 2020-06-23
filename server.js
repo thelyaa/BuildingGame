@@ -206,8 +206,9 @@ app.post('/giveMoneyToFirm', function(req, res) {
 
 app.post('/getFirmByDirectorId', function(req, res) {
     firmList.forEach(function(item) {
-        if (item.directorId === Number(req.body.userId))
+        if (item.directorId == req.body.userId) {
             res.send(item);
+        }
     });
 });
 
