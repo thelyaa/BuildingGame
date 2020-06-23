@@ -212,6 +212,19 @@ app.post('/getFirmByDirectorId', function(req, res) {
     });
 });
 
+var currentContractorRequests = [];
+
+function Request(firmId, value) {
+    this.firm = getFirmById(firmId);
+    this.value = value;
+    currentContractorRequests.push(this);
+}
+
+app.post('/materialRequest', function(req, res) {
+    new Request(req.body.firmId, req.body.request);
+    res.send({success: true});
+});
+
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
 });
