@@ -199,6 +199,11 @@ app.post('/giveMoneyToFirm', function(req, res) {
     getFirmById(req.body.firmId).debt += Number(req.body.value);
 });
 
-
+app.post('/getFirmByDirectorId', function(req, res) {
+    firmList.forEach(function(item) {
+        if (item.directorId === req.body.userId)
+            return item;
+    });
+});
 
 app.listen(3000);
