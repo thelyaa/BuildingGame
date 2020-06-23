@@ -135,7 +135,10 @@ app.post('/setRole', function(req, res){
             if (item.directorId === req.body.userId)
                 flag = true;
         });
-        if (!flag) new Firm(req.body.firmName, req.body.userId);
+        if (!flag) {
+            new Firm(req.body.firmName, req.body.userId);
+            res.send({success: true});
+        }
         else {
             res.send({error: "У вас уже есть созданная фирма"});
         }
