@@ -234,6 +234,10 @@ app.post('/setPrices', function(req,res) {
     res.send({success: true});
 })
 
+app.post('/checkPrices', function(req, res) {
+    res.send(currentPrices);
+})
+
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
 });
