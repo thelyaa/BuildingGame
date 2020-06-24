@@ -30,9 +30,12 @@ function GetFirmInfo(){
     var htmlPage;
     $.post("/getFirmByDirectorId", {userId: directorId}, function(data){
         htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;
-        htmlPage += '<p>' + data.inventory.materialList;  
+        //htmlPage += '<p>' + data.inventory.materialList;  
         $("#main").html(htmlPage);
         firmId = data.firmId;
+        $("#count1").text(data.inventory.materialList.material1);
+        $("#count2").text(data.inventory.materialList.material2);
+        $("#count3").text(data.inventory.materialList.material3);
     });  
 }
 

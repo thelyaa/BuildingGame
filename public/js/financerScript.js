@@ -29,7 +29,7 @@ function GetRequest(){
         htmlTable += '<th>Фирма</th><th>Бюджет</th><th>Материал 1</th><th>Материал 2</th><th>Материал 3</th><th>Управление</th>';
         data.forEach(function(item){
             console.log(item);
-            if (item.status == 3) {
+            if (item.status == 3 && item.firm.firmId == getCookie("firmId")) {
                 htmlTable += '<tr><td>' + item.firm.name + '</td><td>' + item.firm.balance + '</td><td>' + item.materials.material1 + '</td><td>' + item.materials.material2 + '</td><td>' + item.materials.material3 + '</td>';
                 htmlTable += '<td><input type="button" value="✓" onclick="SendRequest('+item.id+')"><input type="number" id="input'+ item.id +'" value="0"></td></tr>';           
             }
@@ -46,13 +46,11 @@ function SendRequest(id){
 }
 
 function GetFirmInfo(){
-    var financerId = getCookie("userId");
+    var firmId = getCookie("firmId");
     var htmlPage;
-    $.post("/getFirmByDirectorId", {userId: }, function(data){
-        htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;
-        htmlPage += '<p>' + data.inventory.materialList;  
-        $("#main").html(htmlPage);
-        firmId = data.firmId;
+    $.post("/getFirmById", {firmId: firmId}, function(data){
+        htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;  
+        $("#firmInfo").html(htmlPage);
     });  
 }
 
