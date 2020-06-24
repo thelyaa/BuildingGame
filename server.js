@@ -222,7 +222,7 @@ function Request(firmId, materials, price) {
         material2: materials.material2,
         material3: materials.material3
     };
-    this.status = 0; // 0 - не выдано, 1 - выдано
+    this.status = 0; // 0 - не выдано, 1 - выдано, 2 - отклонено
     this.price = price;
     currentContractorRequests.push(this);
 }
@@ -236,6 +236,11 @@ app.post('/materialRequest', function(req, res) {
 app.post('/checkRequests', function(req, res) {
     res.send(currentContractorRequests);
 });
+
+app.post('/setRequestStatus', function(req, res) {
+    currentContractorRequests[req.body.requestId].status = req.body.status;
+    res.send({success: true});
+})
 
 var currentPrices = {};
 
