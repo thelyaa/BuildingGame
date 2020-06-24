@@ -37,6 +37,7 @@ function Role(name, multi) {
     this.userId;
     this.multi = multi;
     this.idList = [];
+    this.balance = 0;
     this.setUser = function(userId) {
         if(this.multi) {
             this.idList.push(userId);
@@ -238,8 +239,20 @@ app.post('/checkRequests', function(req, res) {
 });
 
 app.post('/setRequestStatus', function(req, res) {
-    currentContractorRequests[req.body.requestId].status = req.body.status;
-    res.send({success: true});
+    var curRequest = currentContractorRequests[req.body.requestId];
+    if(req.body.status == 1) {
+        if(curRequest.firm.balance < curRequest.price) {
+            res.send({error: "У фирмы недостаточно денег"});
+        } else {
+            curRequest.status = req.body.status;
+            curRequest.firm.balance -= Number(curRequest.price);
+            mainRoles.contractor.balance += Number(curRequest.price);
+            res.send({success: true});
+        }
+    } else {
+        curRequest.status = req.body.status;
+        res.send( {success: true});
+    }
 })
 
 var currentPrices = {};
