@@ -282,6 +282,10 @@ app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
 });
 
+app.get('/builderScreen', function(req, res){
+    res.render('builderScreen');
+});
+
 app.get('/financerScreen', function(req, res){
     res.render('financerScreen');
 });
