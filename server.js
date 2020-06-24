@@ -203,6 +203,10 @@ app.post('/giveMoneyToFirm', function(req, res) {
     var firm = getFirmById(req.body.firmId);
     firm.debt += Number(req.body.value);
     firm.balance += Number(req.body.value);
+})
+
+app.post('/getFirmById', function(req, res) {
+   res.send(getFirmById(req.body.firmId));
 });
 
 app.post('/getFirmByDirectorId', function(req, res) {
