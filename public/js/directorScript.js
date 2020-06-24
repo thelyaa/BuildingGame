@@ -63,19 +63,6 @@ function SendRequest(){
     });
 }
 
-function GetPrices(){
-    var htmlTable = '<table>';
-    htmlTable += '<th>material</th><th>price</th>';
-    
-    $.post('/checkPrices', {}, function(data){
-        console.log(data);
-        $("#contractorPrice1").text(data.material1);
-        $("#contractorPrice2").text(data.material2);
-        $("#contractorPrice3").text(data.material3);
-    });
-        //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3        
-}
-
 function startProject(){
     var options = {
         firmId: firmId,

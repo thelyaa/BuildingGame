@@ -30,11 +30,49 @@ function GetFirmInfo(){
     var htmlPage;
     $.post("/getFirmById", {firmId: firmId}, function(data){
         htmlPage = '<h1>' + data.name + '</h1><br>';  
-        $("#firmInfo").html(htmlPage);
+        
         $("#count1").text(data.inventory.materialList.material1);
         $("#count2").text(data.inventory.materialList.material2);
         $("#count3").text(data.inventory.materialList.material3);
+        htmlPage += '<table>';
+        htmlPage += '<th>Название проекта</th><th>Этап</th><th>Статус</th><th>Площадь</th><th>Стоимость 1м2</th><th>Управление</th>';
+        data.projects.forEach(function(item){
+            htmlPage += '<tr><td>' + item.name + '</td><td>' + item.stage + '</td><td>' + item.status + '</td><td>' + item.square + '</td><td>' + item.pricePerMetre + '</td>';
+            if (item.status == 0) {
+                htmlPage += '<td><input type="button" value="✓" onclick="setProjectStatus('+ 1 + ',' + item.id+')"><input type="button" value="X" onclick="setProjectStatus('+ -1 + ',' + item.id+')"></td></tr>';
+            }
+            if (item.status == 1) {
+                htmlPage += '<td><input type="button" value="Вырыть котлован" onclick="setProjectStatus('+ 2 + ',' + item.id+')"></td></tr>';
+            }
+            if (item.status == 2) {
+                htmlPage += '<td><input type="button" value="Уложить фундамент" onclick="setProjectStatus('+ 3 + ',' + item.id+')"></td></tr>';
+            }
+            if (item.status == 3) {
+                htmlPage += '<td><input type="button" value="Построить стены" onclick="setProjectStatus('+ 4 + ',' + item.id+')"></td></tr>';
+            }
+            if (item.status == 4) {
+                htmlPage += '<td><input type="button" value="Построить крышу" onclick="setProjectStatus('+ 5 + ',' + item.id+')"></td></tr>';
+            }
+            if (item.status == 5) {
+                htmlPage += '<td><input type="button" value="Закончить строительство" onclick="setProjectStatus('+ 6 + ',' + item.id+')"></td></tr>';
+            }
+            if (item.status == 6) {
+                htmlPage += '<td>Строительство окончено</td></tr>';
+            }
+            if (item.status == -1) {
+                htmlPage += '<td>Строительство отменено</td></tr>';
+            }
+        });
+        htmlPage += '</table>';
+        $("#firmInfo").html(htmlPage);
     });  
 }
 
 GetFirmInfo();
+    
+function setProjectStatus(status, idProject){
+    $.post('/setProjectStatus', {firmId: firmId, idProject: idProject, status: status}, function(data){
+        if (status == 6) alert("строительство окончено");
+        else if (data.success) alert("переход на следующий этап"); 
+    });
+}
