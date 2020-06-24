@@ -26,6 +26,12 @@
 
 #firmList {
     display: flex;
+    flex-wrap: wrap
+}
+
+#firmList div {
+    display: flex;
+    padding-top: 5px;
 }
 
 .itemRole {
@@ -51,7 +57,7 @@
 .form-inner {
     border: 2px solid #909090;
     border-bottom: none;
-    height: 492px;
+    height: auto;
 }
 
 .stripes-block {

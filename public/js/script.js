@@ -80,15 +80,15 @@ function GetFirmList(){
         $("#firmList").text("")
         console.log(returnedData);
         returnedData.forEach(function(item, index){
-            var checkBox = "<input class='field' type='radio' name='field' id='firm-" + item.firmId + "'>"
+            var checkBox = "<div><input class='field' type='radio' name='field' id='firm-" + item.firmId + "'>"
             var selectHTML = "<select firm-data='" + index + "'>";
             for (var roleName in item.roles) {
                 if(!item.roles[roleName].userId)  {
                     selectHTML += "<option id='" + roleName +"' value='" + roleName +"'>" + item.roles[roleName].name + "</option>";
                 }
             }
-            selectHTML += "</select>";
-            $("#firmList").append(checkBox + item.name + selectHTML + "<br>");
+            selectHTML += "</select></div>";
+            $("#firmList").append(checkBox + item.name + selectHTML);
         });
     });
 }
