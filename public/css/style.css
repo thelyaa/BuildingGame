@@ -174,7 +174,24 @@
 .financerScreen_table {
     display: flex;
     justify-content: center;
-    padding: 20px 10px 0px 10px;
+    padding: 19px 10px 0px 10px;
+}
+
+.contractorScreen_materialBlock {
+    padding: 10px 0px 10px 25px;
+    width: 291px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.contractorScreen_materialBlock p {
+    margin-top: 28px;
+    padding-right: 5px;
+}
+
+.contractorScreen_materialBlock input {
+    margin-top: 10px;
+    font-size: 24px;
 }
 
 * {
