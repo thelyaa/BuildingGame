@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <%= title %>
+
     <body>
         <div id="testButton" onclick="getRole()">GET ROLE</div>
         <form method="post" action="/roles" class="air">
@@ -14,10 +15,9 @@
                 <div class="stripes-block"></div>
                 <div class="form-row">
                     <label for="name">Название фирмы</label>
-                    <input type="text" id="name" id="firmName" disabled="true" required>
+                    <input type="text" id="firmName" disabled required>
                 </div>
                 <div class="Roles_mainMenuListItem">
-
                     <div class="itemRole">
                         <input type="radio" class="field" id="customer" name="field">
                         <div>Покупатель</div>
@@ -34,8 +34,11 @@
                         <input type="radio" class="field" id="director" name="field" onchange="DirectorClick()">
                         <div>Директор</div>
                     </div>
+                    <div class="itemRole">
+                        <div id="firmList"></div>
+                    </div>
                 </div>
-                <div class="form-row">       
+                <div class="form-row">
                 </div>
                 <div class="form-row-icon">
                     <i class="fa fa-hand-o-up"></i>
@@ -46,6 +49,7 @@
                     <input type="button" onclick="GetFirmList()" value="Получить список фирм">
                 </div>
             </div>
+
         </form>
     </body>
 

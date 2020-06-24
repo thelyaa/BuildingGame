@@ -24,6 +24,10 @@
     margin-bottom: 50px;
 }
 
+#firmList {
+    display: flex;
+}
+
 .itemRole {
     display: flex;
     width: 130px;
