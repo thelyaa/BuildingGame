@@ -92,6 +92,12 @@
     height: 40px;
 }
 
+.builderScreen_tableBlock td input{
+    width: 100px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
 .itemRole {
     display: flex;
     width: 130px;
@@ -105,6 +111,22 @@
     font-weight: 700;
     display: flex;
     justify-content: center;
+}
+
+.builderScreen_tableTable {
+    width: 100%;
+}
+
+.builderScreen_tableTable td:first-child {
+    padding: 10px 0px 10px 20px;
+}
+
+#firmInfo table {
+    width: 100%;
+}
+
+#firmInfo h1 {
+    text-align: center;
 }
 
 * {
