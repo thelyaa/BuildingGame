@@ -47,11 +47,13 @@ function Role(name, multi) {
     }
 }
 
-function Building(name, firmId) {
+function Building(name, firmId, square, pricePerMetre) {
     this.name = name;
-    this.stage = 0; // 0 - проект, 1 - вырыт котлован, 2 - заложен фундамент, 3 - построены стены, 4 - построена крыша
+    this.stage = 0; // -1 - проект отклонен, 0 - проект, 1 - вырыт котлован, 2 - заложен фундамент, 3 - построены стены, 4 - построена крыша
     this.status = 0; // 0 - продан
     this.ownerFirmId = firmId;
+    this.square = square;
+    this.pricePerMetre = pricePerMetre;
 }
 
 function Inventory() {
@@ -84,6 +86,7 @@ function Firm(name, directorId) {
     this.debt = 0;
     this.balance = SETTINGS.DEFAULT_FIRM_CAPITAL;
     this.inventory = new Inventory();
+    this.projects = [];
     this.roles = {
         director: new Role("Директор"),
         foreman: new Role("Прораб"),
@@ -176,6 +179,15 @@ app.post('/setRole', function(req, res){
 app.post('/roles', function(req, res) {
     if (!req.body) return res.sendStatus(400);
     res.sendFile(__dirname + '/views/roles.html', { data: req.body});
+});
+
+/**
+ * firmId, objectName, square, pricePerMetre
+ */
+app.post('/startBuilding', function(req, res) {
+    var firm = getFirmById(req.body.firmId);
+    firm.projects.push(new Building(req.body.objectName, firm.firmId, req.body.square, req.body.pricePerMetre));
+    res.send({success: true});
 });
 
 /**
