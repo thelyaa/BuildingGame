@@ -54,6 +54,7 @@ function Building(name, firmId, square, pricePerMetre) {
     this.name = name;
     this.globalId = projectId++;
     this.id = getFirmById(firmId).projects.length;
+    this.firm = getFirmById(firmId);
     this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша, 6 - строительство завершено
     this.status = 0; // 0 - идет строительство, 1 - построен
     this.ownerFirmId = firmId;
