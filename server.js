@@ -215,6 +215,7 @@ app.post('/getFirmByDirectorId', function(req, res) {
 var currentContractorRequests = [];
 
 function Request(firmId, materials, price) {
+    this.id = currentContractorRequests.length;
     this.firm = getFirmById(firmId);
     this.materials = {
         material1: materials.material1,
@@ -227,6 +228,7 @@ function Request(firmId, materials, price) {
 }
 
 app.post('/materialRequest', function(req, res) {
+    console.log(req.body.request);
     new Request(req.body.firmId, req.body.request, req.body.price);
     res.send({success: true});
 });
