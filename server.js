@@ -249,9 +249,13 @@ app.post('/setRequestStatus', function(req, res) {
             mainRoles.contractor.balance += Number(curRequest.price);
             res.send({success: true});
         }
-    } else {
+    } else if (req.body.status == 2){
         curRequest.status = req.body.status;
         res.send( {success: true});
+    } else if(req.body.status == 0) {
+        curRequest.price = req.body.price;
+        curRequest.status = req.body.status;
+        res.send({success: true});
     }
 })
 
