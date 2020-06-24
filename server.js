@@ -50,6 +50,12 @@ function Role(name, multi) {
 var projectId = 0;
 var projectList = [];
 
+function Parter(id, projectId, part) {
+    this.id = id;
+    this.projectId = projectId;
+    this.part = part;
+}
+
 function Building(name, firmId, square, pricePerMetre) {
     this.name = name;
     this.globalId = projectId++;
@@ -58,6 +64,7 @@ function Building(name, firmId, square, pricePerMetre) {
     this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша, 6 - строительство завершено
     this.status = 0; // 0 - идет строительство, 1 - построен
     this.ownerFirmId = firmId;
+    this.partersList = [];
     this.square = square;
     this.pricePerMetre = pricePerMetre;
     projectList.push(this);
@@ -321,6 +328,14 @@ app.post('/setProjectStatus', function(req, res) {
 
 app.post('/getAllProjects', function(req,res) {
     res.send(projectList);
+})
+
+app.post('/buySector', function(req, res) {
+    var curFirm = getFirmById(projectList[req.body.globalId].firmId);
+    var curProj = projectList[req.body.globalId];
+    curFirm.balance += req.body.part * curProj.pricePerMetre;
+    curFirm.projects[req.body.projectId].partersList.push(new Parter(req.body.parterId, req.body.projectId, req.body.part));
+    res.send({success: true});
 })
 
 app.get('/directorScreen', function(req, res){
