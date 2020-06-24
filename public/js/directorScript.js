@@ -47,8 +47,15 @@ function SendRequest(){
             requestObj[this.id] = $("#" + this.id + "Inp").val();
         }
     });
+    var options =  {
+        firmId: firmId,
+        price: $("#requestPrice").val(),
+        material1: $("#material1Inp").val(),
+        material2: $("#material2Inp").val(),
+        material3: $("#material3Inp").val()
+    };
     console.log(requestObj);
-    $.post('/materialRequest', { firmId: firmId, request: requestObj, price: $("#requestPrice").val() }, function(data){
+    $.post('/materialRequest', options, function(data){
         if (data.success) alert("заявка отправлена"); 
     });
 }
@@ -63,7 +70,6 @@ function GetPrices(){
         $("#contractorPrice2").text(data.material2);
         $("#contractorPrice3").text(data.material3);
     });
-        //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3
-        
-        
+        //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3        
 }
+

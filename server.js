@@ -229,8 +229,8 @@ function Request(firmId, materials, price) {
 }
 
 app.post('/materialRequest', function(req, res) {
-    console.log(req.body.request);
-    new Request(req.body.firmId, req.body.request, req.body.price);
+    new Request(req.body.firmId, req.body, req.body.price);
+
     res.send({success: true});
 });
 
