@@ -214,16 +214,16 @@ app.post('/getFirmByDirectorId', function(req, res) {
 
 var currentContractorRequests = [];
 
-function Request(firmId, value) {
+function Request(firmId, value, price) {
     this.firm = getFirmById(firmId);
     this.value = value;
     this.status = 0; // 0 - не выдано, 1 - выдано
-    this.price = 0;
+    this.price = price;
     currentContractorRequests.push(this);
 }
 
 app.post('/materialRequest', function(req, res) {
-    new Request(req.body.firmId, req.body.request);
+    new Request(req.body.firmId, req.body.request, req.body.price);
     res.send({success: true});
 });
 
