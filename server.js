@@ -334,7 +334,7 @@ app.post('/buySector', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].firmId);
     var curProj = projectList[req.body.globalId];
     curFirm.balance += req.body.part * curProj.pricePerMetre;
-    curFirm.projects[req.body.projectId].partersList.push(new Parter(req.body.parterId, req.body.projectId, req.body.part));
+    curFirm.projects[req.body.id].partersList.push(new Parter(req.body.parterId, req.body.id, req.body.part));
     res.send({success: true});
 })
 
