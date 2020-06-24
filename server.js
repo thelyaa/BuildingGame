@@ -310,4 +310,8 @@ app.get('/contractorScreen', function(req, res){
     res.render('contractorScreen');
 });
 
+app.get('/foremanScreen', function(req, res){
+    res.render('foremanScreen');
+});
+
 app.listen(3000);
