@@ -88,7 +88,7 @@ function GetFirmList(){
                 }
             }
             selectHTML += "</select></div>";
-            $("#firmList").append(checkBox + item.name + selectHTML);
+            $("#firmList").append(checkBox + '<span class="Roles_itemCompanyName">' + item.name + '</span>' + selectHTML);
         });
     });
 }

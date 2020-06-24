@@ -29,7 +29,7 @@ function GetFirmInfo(){
     var directorId = getCookie("userId");
     var htmlPage;
     $.post("/getFirmByDirectorId", {userId: directorId}, function(data){
-        htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;
+        htmlPage = '<span class="directorScreen_firmName">' + data.name + '</span>' + '<div class="directorScreen_companyInfo"><span class="directorScreen_firmBalance"> Баланс: ' + data.balance + '₽</span><span class="directorScreen_firmDebt"> Долг за предприятием: ' + data.debt + '₽</span></div>';
         //htmlPage += '<p>' + data.inventory.materialList;  
         $("#main").html(htmlPage);
         firmId = data.firmId;

@@ -24,6 +24,10 @@
     margin-bottom: 50px;
 }
 
+.Roles_itemCompanyName {
+    padding: 10px 10px 10px 0px;
+}
+
 #firmList {
     display: flex;
     flex-wrap: wrap
@@ -34,12 +38,73 @@
     padding-top: 5px;
 }
 
+#main {
+    width: 100%;
+}
+
+#main span {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.directorScreen_companyInfo {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.directorScreen_companyInfo span {
+    padding-top: 10px;
+    margin-left: 25px;
+}
+
+.directorScreen_materialsTable {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.directorScreen_requestHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.directorScreen_newObject {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.directorScreen_newObject input {
+    width: 137px;
+    height: 32px;
+}
+
+.directorScreen_newObject div {
+    padding: 10px;
+}
+
+.directorScreen_newObject span {
+    padding-right: 10px;
+}
+
+.directorScreen_materialsTable td .field {
+    width: 40px;
+    height: 40px;
+}
+
 .itemRole {
     display: flex;
     width: 130px;
     flex-wrap: nowrap;
     align-items: center;
     padding-top: 10px
+}
+
+.directorScreen_firmName {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
 }
 
 * {
@@ -139,4 +204,38 @@
 
 .form-row-icon input[type="button"]:hover {
     color: #909090;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th,
+td:first-child {
+    background: #c9dbf4;
+    padding: 10px 20px;
+}
+
+th,
+td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+
+td {
+    background: #D8E6F3;
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+.td-count input {
+    width: 100px;
+    height: 35px;
 }

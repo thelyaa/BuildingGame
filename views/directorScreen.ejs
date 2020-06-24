@@ -1,58 +1,81 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
+<div class="air">
+    <div class="form-inner">
+        <div id="main"></div>
+        <div class="form-row"></div>
+        <div id="firmMaterials" class="directorScreen_materialsTable">
+            <table>
+                <th>Материал</th>
+                <th>Количество</th>
+                <tr>
+                    <td>Материал 1</td>
+                    <td>
+                        <div id="count1"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Материал 2</td>
+                    <td>
+                        <div id="count2"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Материал 3</td>
+                    <td>
+                        <div id="count3"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="form-row"></div>
+        <h2 class="directorScreen_requestHeader">Заявка</h2>
+        <div id="materials" class="directorScreen_materialsTable">
+            <table>
+                <th></th>
+                <th>Материал</th>
+                <th>Кол-во</th>
+                <tr>
+                    <td><input type="checkbox" class="field" id="material1"></td>
+                    <td><label>Материал1</label></td>
+                    <td class='td-count'><input id="material1Inp" type="number"></td>
 
-<div id="main"></div>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="field" id="material2"></td>
+                    <td><label>Материал2</label></td>
+                    <td class='td-count'><input id="material2Inp" type="number"></td>
 
-<div id="firmMaterials">
-    <table>
-        <th>Материал</th><th>Количество</th>
-        <tr>
-            <td>Материал 1</td>
-            <td><div id="count1"></div></td>
-        </tr>
-        <tr>
-            <td>Материал 2</td>
-            <td><div id="count2"></div></td>
-        </tr>
-        <tr>
-            <td>Материал 3</td>
-            <td><div id="count3"></div></td>
-        </tr>
-    </table>
-</div>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="field" id="material3"></td>
+                    <td><label>Материал3</label></td>
+                    <td class='td-count'><input id="material3Inp" type="number"></td>
 
-<h2>Заявка</h2>
-<div id="materials">
-    <table>
-        <th></th><th>Материал</th><th>Кол-во</th><th>Цены поставщика</th>
-        <tr>
-            <td><input type="checkbox" class="field" id="material1"></td>
-            <td><label>Материал1</label></td>
-            <td><input id="material1Inp" type="number"></td>
-            <td><div id="contractorPrice1"></div></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" class="field" id="material2"></td>
-            <td><label>Материал2</label></td>
-            <td><input id="material2Inp" type="number"></td>
-            <td><div id="contractorPrice2"></div></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" class="field" id="material3"></td>
-            <td><label>Материал3</label></td>
-            <td><input id="material3Inp" type="number"></td>
-            <td><div id="contractorPrice3"></div></td>
-        </tr>
-    </table>
-<!--    <label>Выделенная сумма на покупку</label><input type="number" id="requestPrice">-->
-    <input type="button" value="Отправить заявку" onclick="SendRequest()"><br>
-</div>
-
-<div id="newObject">
-    <label>Название объекта</label><input type="text" id="nameObject"><br>
-    <label>Площадь объекта</label><input type="number" id="squareObject"><br>
-    <label>Цена 1 м2</label><input type="number" id="pricePerMetre"><br>
-    <input type="button" value="Отправить прорабу" onclick="startProject()">
+                </tr>
+            </table>
+            <!--    <label>Выделенная сумма на покупку</label><input type="number" id="requestPrice">-->
+        </div>
+        <div class="form-row">
+        </div>
+        <div class="form-row-icon">
+            <i class="fa fa-paper-plane"></i>
+            <input type="button" onclick="SendRequest()" value="Отправить заявку">
+        </div>
+        <div id="newObject" class="directorScreen_newObject">
+            <div><span>Название объекта</span><input type="text" id="nameObject"></div>
+            <div><span>Площадь объекта</span><input type="number" id="squareObject"></div>
+            <div><span>Цена 1 м2</span><input type="number" id="pricePerMetre"></div>
+        </div>
+        <div class="form-row">
+        </div>
+        <div class="form-row-icon">
+            <i class="fa fa-suitcase"></i>
+            <input type="button" onclick="startProject()" value="Отправить прорабу">
+        </div>
+    </div>
 </div>
 <script src="../js/directorScript.js"></script>
