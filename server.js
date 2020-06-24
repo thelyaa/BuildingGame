@@ -99,7 +99,10 @@ function getLastId() {
  * Запрос получения страницы ролей
  */
 app.get('/roles', function(req, res) {
-    res.sendFile(__dirname + '/views/roles.html');
+//    res.sendFile(__dirname + '/views/roles.html');
+    res.render('roles', {
+        title: 'RolesTest'
+    });
 });
 
 /**
