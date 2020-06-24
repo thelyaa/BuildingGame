@@ -54,7 +54,7 @@ function Building(name, firmId, square, pricePerMetre) {
     this.name = name;
     this.globalId = projectId++;
     this.id = getFirmById(firmId).projects.length;
-    this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша
+    this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша, 6 - строительство завершено
     this.status = 0; // 0 - идет строительство, 1 - построен
     this.ownerFirmId = firmId;
     this.square = square;
@@ -318,6 +318,10 @@ app.post('/setProjectStatus', function(req, res) {
     res.send({success: true});
 })
 
+app.post('/getAllProjects', function(req,res) {
+    res.send(projectList);
+})
+
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
 });
@@ -336,6 +340,10 @@ app.get('/contractorScreen', function(req, res){
 
 app.get('/foremanScreen', function(req, res){
     res.render('foremanScreen');
+});
+
+app.get('/customerScreen', function(req, res){
+    res.render('customerScreen');
 });
 
 app.listen(3000);
