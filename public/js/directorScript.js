@@ -76,3 +76,15 @@ function GetPrices(){
         //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3        
 }
 
+function startProject(){
+    var options = {
+        firmId: firmId,
+        objectName: $("#nameObject").val(),
+        square: $("#squareObject").val(),
+        pricePerMetre: $("#pricePerMetre").val()
+    };
+    
+    $.post('/startBuilding', options, function(data){
+        if (data.success) alert("проект прорабу отправлено");
+    });
+}
