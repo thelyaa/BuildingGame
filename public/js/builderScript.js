@@ -24,16 +24,26 @@ function eraseCookie(name) {
 }
 
 var firmId;
+var statuses = ['', 'вырыть котлован', 'заложить фундамент', 'построить стены', 'построить крышу', ''];
 
 function GetFirmInfo(){
     firmId = getCookie("firmId");
     var htmlPage;
     $.post("/getFirmById", {firmId: firmId}, function(data){
         htmlPage = '<h1>' + data.name + '</h1><br>';  
-        $("#firmInfo").html(htmlPage);
         $("#count1").text(data.inventory.materialList.material1);
         $("#count2").text(data.inventory.materialList.material2);
         $("#count3").text(data.inventory.materialList.material3);
+        htmlPage += '<table>';
+        htmlPage += '<th>Название проекта</th><th>Статус</th><th>Площадь</th>';
+        data.projects.forEach(function(item){
+            if (item.status > 0 && item.status < 5){
+                htmlPage += '<tr><td>' + item.name + '</td><td>' + statuses[item.status] + '</td><td>' + item.square + '</td></tr>';
+                
+            }
+        });
+        htmlPage += '</table>';
+        $("#firmInfo").html(htmlPage);
     });  
 }
 
