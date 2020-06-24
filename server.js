@@ -239,6 +239,12 @@ function Request(firmId, materials, price) {
     currentContractorRequests.push(this);
 }
 
+app.post('/setFirmMaterial', function(req, res) {
+    var firm = getFirmById(req.body.firmId);
+    firm.inventory.take("material" + req.body.idMaterial, req.body.count);
+    res.send({success: true});
+})
+
 app.post('/materialRequest', function(req, res) {
     new Request(req.body.firmId, req.body, req.body.price);
 
