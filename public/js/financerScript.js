@@ -49,7 +49,7 @@ function GetFirmInfo(){
     var firmId = getCookie("firmId");
     var htmlPage;
     $.post("/getFirmById", {firmId: firmId}, function(data){
-        htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;  
+        htmlPage = '<h1>' + data.name + '</h1><div class="financerScreen_block">' + '<span class="financerScreen_balance">Баланс: ' + data.balance + '₽</span><span class="financerScreen_debt"> Долг: ' + data.debt +"₽</span></div>";  
         $("#firmInfo").html(htmlPage);
     });  
 }

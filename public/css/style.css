@@ -151,6 +151,32 @@
     max-width: 670px;
 }
 
+.financerScreen_block {
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.financerScreen_block span {
+    font-weight: 700;
+    font-size: 24px;
+    padding-top: 10px;
+    margin-left: 25px;
+}
+
+.financerScreen_requestButton {
+    width: 150px;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 33%;
+}
+
+.financerScreen_table {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px 0px 10px;
+}
+
 * {
     box-sizing: border-box;
 }

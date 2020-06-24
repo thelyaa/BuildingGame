@@ -1,27 +1,45 @@
 <head>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
-<div id="firmInfo"></div>
-<input type="button" value="Рассмотреть заявку" onclick="GetRequest()">
-<div id="main">
-    
+<div class="air">
+    <div class="form-inner">
+        <div id="firmInfo"></div>
+        <div class="form-row"></div>
+        <div class="form-row-icon">
+            <i class="fa fa-search"></i>
+            <input type="button" onclick="GetRequest()" value="Рассмотреть заявку">
+        </div>
+        <div id="main"></div>
+        <table class="financerScreen_table">
+            <th>Материал</th>
+            <th>Цены поставщика</th>
+            <tr>
+                <td><label>Материал1</label></td>
+                <td>
+                    <div id="contractorPrice1"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Материал2</label></td>
+                <td>
+                    <div id="contractorPrice2"></div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Материал3</label></td>
+                <td>
+                    <div id="contractorPrice3"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="form-row"></div>
+        <div class="form-row-icon">
+            <i class="fa fa-info-circle"></i>
+            <input type="button" onclick="GetPrices()" value="Узнать цены на материалы">
+        </div>
+    </div>
 </div>
-<input type="button" value="Узнать цены на материалы" onclick="GetPrices()">
-<table>
-    <th>Материал</th><th>Цены поставщика</th>
-        <tr>
-            
-            <td><label>Материал1</label></td>
-            <td><div id="contractorPrice1"></div></td>
-        </tr>
-        <tr>
-            <td><label>Материал2</label></td>
-            <td><div id="contractorPrice2"></div></td>
-        </tr>
-        <tr>
-            <td><label>Материал3</label></td>
-            <td><div id="contractorPrice3"></div></td>
-        </tr>
-</table>
 <script src="../js/financerScript.js"></script>
