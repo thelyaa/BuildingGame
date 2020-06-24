@@ -214,9 +214,9 @@ app.post('/getFirmByDirectorId', function(req, res) {
 
 var currentContractorRequests = [];
 
-function Request(firmId, value, price) {
+function Request(firmId, materials, price) {
     this.firm = getFirmById(firmId);
-    this.value = value;
+    this.materials = materials;
     this.status = 0; // 0 - не выдано, 1 - выдано
     this.price = price;
     currentContractorRequests.push(this);
