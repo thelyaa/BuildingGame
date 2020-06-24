@@ -47,6 +47,13 @@ function Role(name, multi) {
     }
 }
 
+function Building(name, firmId) {
+    this.name = name;
+    this.stage = 0; // 0 - проект, 1 - вырыт котлован, 2 - заложен фундамент, 3 - построены стены, 4 - построена крыша
+    this.status = 0; // 0 - продан
+    this.ownerFirmId = firmId;
+}
+
 function Inventory() {
     this.materialList = {
         material1: 0,
@@ -251,6 +258,9 @@ app.post('/setRequestStatus', function(req, res) {
             curRequest.status = req.body.status;
             curRequest.firm.balance -= Number(curRequest.price);
             mainRoles.contractor.balance += Number(curRequest.price);
+            curRequest.firm.inventory.add("material1", curRequest.materials.material1);
+            curRequest.firm.inventory.add("material2", curRequest.materials.material2);
+            curRequest.firm.inventory.add("material3", curRequest.materials.material3);
             res.send({success: true});
         }
     } else if (req.body.status == 2){
