@@ -216,7 +216,11 @@ var currentContractorRequests = [];
 
 function Request(firmId, materials, price) {
     this.firm = getFirmById(firmId);
-    this.materials = JSON.parse(JSON.stringify(materials));
+    this.materials = {
+        material1: materials.material1,
+        material2: materials.material2,
+        material3: materials.material3
+    };
     this.status = 0; // 0 - не выдано, 1 - выдано
     this.price = price;
     currentContractorRequests.push(this);
