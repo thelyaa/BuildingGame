@@ -57,6 +57,7 @@ function SendResult(){
         resultRole = currentField
     }
     
+    setCookie("firmId", firmId);
     var firmName = document.getElementById("firmName").value;
     $.post('/setRole', { userId: getCookie('userId'), role : resultRole, firmName: firmName, firmId: firmId },
         function(returnedData){

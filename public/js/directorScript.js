@@ -49,7 +49,7 @@ function SendRequest(){
     });
     var options =  {
         firmId: firmId,
-        price: $("#requestPrice").val(),
+        //price: $("#requestPrice").val(),
         material1: $("#material1Inp").val(),
         material2: $("#material2Inp").val(),
         material3: $("#material3Inp").val()
