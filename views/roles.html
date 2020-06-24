@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Выбор роли</title>
+    <meta charset="utf-8">
+    <link href="../styles/style.css" rel="stylesheet">
+</head>
+
+
+
+<body>
+<div>
+    <form method="post" action="/roles">
+        <h3 class="">Фирма</h3>
+        <input type="text" id="firmName" disabled="true" placeholder="Название фирмы">
+        <div>
+            <div>
+                <input type="radio" name="customer"><label>Покупатель</label>
+                <input type="radio" name="banker"><label>Банкир</label><br>
+                <input type="radio" name="contractor"><label>Поставщик</label>
+                <input type="radio" name="director" onclick="DirectorClick()"><label>Директор</label>
+            </div>
+            <div>
+                <select name="firm">
+                        <option value='director'>Директор</option>
+                        <option value="builder">Строитель</option>
+                        <option value="prorab">Прораб</option>
+                        <option value="buh">Бухгалтер</option>
+                    </select>
+            </div>
+            <input type="submit" value="Выбрать">
+        </div>
+
+    </form>
+</div>
+</body>
+
+</html>

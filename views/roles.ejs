@@ -1,36 +1,52 @@
+<html>
+
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../js/script.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <%= title %>
-<div id="testButton" onclick="getRole()">GET ROLE</div>
-<style>
-    .main {
-        display: flex;
-    }
-    .block {
-        width: 50%;
-    }
-</style>
+    <body>
+        <div id="testButton" onclick="getRole()">GET ROLE</div>
+        <form method="post" action="/roles" class="air">
+            <div class="form-inner">
+                <div class="stripes-block"></div>
+                <div class="form-row">
+                    <label for="name">Название фирмы</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="Roles_mainMenuListItem">
 
-<div class="main">
-    <div class="block">
-        <form method="post" action="/roles">
-            <input type="radio" class="field" id="customer" name="field"><label>Покупатель</label><br>
-            <input type="radio" class="field" id="banker" name="field"><label>Банкир</label><br>
-            <input type="radio" class="field" id="contractor" name="field"><label>Поставщик</label><br>
-            <input type="radio" class="field" id="director" onchange="DirectorClick()" name="field"><label>Директор</label><br>
-            <label>Название фирмы</label><input type="text" id="firmName" disabled="true">
-            <label>Фирма</label>
-            <div>Список текущих фирм:</div>
-            <div class="block">
-                <div id="firmList"></div>
+                    <div class="itemRole">
+                        <input type="radio" class="field" id="customer" name="field">
+                        <div>Покупатель</div>
+                    </div>
+                    <div class="itemRole">
+                        <input type="radio" class="field" id="banker" name="field">
+                        <div>Банкир</div>
+                    </div>
+                    <div class="itemRole">
+                        <input type="radio" class="field" id="contractor" name="field">
+                        <div>Поставщик</div>
+                    </div>
+                    <div class="itemRole">
+                        <input type="radio" class="field" id="director" name="field" onchange="DirectorClick()">
+                        <div>Директор</div>
+                    </div>
+                </div>
+                <div class="form-row">       
+                </div>
+                <div class="form-row-icon">
+                    <i class="fa fa-hand-o-up"></i>
+                    <input type="button" onclick="SendResult()" value="Выбрать">
+                </div>
+                <div class="form-row-icon">
+                    <i class="fa fa-book"></i>
+                    <input type="button" onclick="GetFirmList()" value="Получить список фирм">
+                </div>
             </div>
-            <input onclick="SendResult()" type="button" value="Выбрать">
         </form>
-    </div>
-    
-    <input type="button" onclick="GetFirmList()" value="Получить список фирм">
-    
+    </body>
 
-</div>
+</html>
