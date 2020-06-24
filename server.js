@@ -47,13 +47,19 @@ function Role(name, multi) {
     }
 }
 
+var projectId = 0;
+var projectList = [];
+
 function Building(name, firmId, square, pricePerMetre) {
     this.name = name;
-    this.stage = 0; // -1 - проект отклонен, 0 - проект, 1 - вырыт котлован, 2 - заложен фундамент, 3 - построены стены, 4 - построена крыша
-    this.status = 0; // 0 - продан
+    this.globalId = projectId++;
+    this.id = getFirmById(firmId).projects.length;
+    this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша
+    this.status = 0; // 0 - идет строительство, 1 - построен
     this.ownerFirmId = firmId;
     this.square = square;
     this.pricePerMetre = pricePerMetre;
+    projectList.push(this);
 }
 
 function Inventory() {
@@ -304,6 +310,12 @@ app.post('/setPrices', function(req,res) {
 app.post('/checkPrices', function(req, res) {
     console.log(currentPrices);
     res.send(currentPrices);
+})
+
+app.post('/setProjectStatus', function(req, res) {
+    var firm = getFirmById(req.body.firmId);
+    firm.projects[req.body.idProject].status = req.body.status;
+    res.send({success: true});
 })
 
 app.get('/directorScreen', function(req, res){
