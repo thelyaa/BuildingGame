@@ -1,0 +1,132 @@
+.Roles_mainMenuBlock {
+    width: 400px;
+    height: auto;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.Roles_mainMenuHeader {
+    text-align: center;
+    width: 100%
+}
+
+.Roles_mainMenuListItem {
+    width: 130px;
+    padding-top: 27px;
+}
+
+.Roles_mainMenuListItem input {
+    width: 30px;
+    height: 30px;
+}
+
+.Roles_mainMenuListItem label {
+    margin-bottom: 50px;
+}
+
+.itemRole {
+    display: flex;
+    width: 130px;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-top: 10px
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.air {
+    max-width: 450px;
+    margin: 50px auto 0;
+    padding: 20px;
+    background: #E4E3DF;
+    font-family: 'Oswald', sans-serif;
+}
+
+.form-inner {
+    border: 2px solid #909090;
+    border-bottom: none;
+    height: 449px;
+}
+
+.stripes-block {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: repeating-linear-gradient(-45deg, #E4E3DF, #E4E3DF 5px, #909090 6px, #909090 8px);
+    border-bottom: 2px solid #909090;
+}
+
+.stripes-block:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    margin-left: -6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fffffe;
+    box-shadow: 0 0 0 1px #090606, 0 0 0 12px #9c8778;
+}
+
+.form-row {
+    position: relative;
+    padding: 10px;
+    border-bottom: 2px solid #909090;
+    padding-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+}
+
+.form-row input {
+    display: block;
+    width: 100%;
+    padding: 0;
+    line-height: 30px;
+    border-width: 0;
+    border: background: #E4E3DF;
+}
+
+.form-row-icon {
+    position: relative;
+    border-bottom: 2px solid #909090;
+}
+
+.form-row-icon .fa {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #909090;
+    color: #E4E3DF;
+}
+
+.form-row-icon input {
+    display: block;
+    width: 100%;
+    padding: 0 10px 0 50px;
+    line-height: 40px;
+    box-sizing: border-box;
+    border-width: 0;
+    background: #E4E3DF;
+}
+
+.form-row-icon .fa-paper-plane-o {
+    border-bottom-color: #909090;
+    cursor: pointer;
+}
+
+.form-row-icon input[type="button"] {
+    cursor: pointer;
+}
+
+.form-row-icon input[type="button"]:hover {
+    color: #909090;
+}

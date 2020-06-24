@@ -1,0 +1,27 @@
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<div id="firmInfo"></div>
+<div id="firmMaterials">
+    <table>
+        <th>Материал</th><th>Количество</th><th>Управление</th>
+        <tr>
+            <td>Материал 1</td>
+            <td><div id="count1"></div></td>
+            <td><input type="number" id="wastedCount1"><input type="button" value="Расход" onclick="MaterialWaste(1)"></td>
+        </tr>
+        <tr>
+            <td>Материал 2</td>
+            <td><div id="count2"></div></td>
+            <td><input type="number" id="wastedCount2"><input type="button" value="Расход" onclick="MaterialWaste(2)"></td>
+        </tr>
+        <tr>
+            <td>Материал 3</td>
+            <td><div id="count3"></div></td>
+            <td><input type="number" id="wastedCount3"><input type="button" value="Расход" onclick="MaterialWaste(3)"></td>
+        </tr>
+    </table>
+</div>
+<div id="main"></div>
+<script src="../js/foremanScript.js"></script>

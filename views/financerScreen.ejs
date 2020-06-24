@@ -1,0 +1,27 @@
+<head>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<div id="firmInfo"></div>
+<input type="button" value="Рассмотреть заявку" onclick="GetRequest()">
+<div id="main">
+    
+</div>
+<input type="button" value="Узнать цены на материалы" onclick="GetPrices()">
+<table>
+    <th>Материал</th><th>Цены поставщика</th>
+        <tr>
+            
+            <td><label>Материал1</label></td>
+            <td><div id="contractorPrice1"></div></td>
+        </tr>
+        <tr>
+            <td><label>Материал2</label></td>
+            <td><div id="contractorPrice2"></div></td>
+        </tr>
+        <tr>
+            <td><label>Материал3</label></td>
+            <td><div id="contractorPrice3"></div></td>
+        </tr>
+</table>
+<script src="../js/financerScript.js"></script>

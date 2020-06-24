@@ -30,9 +30,12 @@ function GetFirmInfo(){
     var htmlPage;
     $.post("/getFirmByDirectorId", {userId: directorId}, function(data){
         htmlPage = '<h1>' + data.name + '</h1><br>' + '<p>' + data.balance + '<p>' + data.debt;
-        htmlPage += '<p>' + data.inventory.materialList;  
+        //htmlPage += '<p>' + data.inventory.materialList;  
         $("#main").html(htmlPage);
         firmId = data.firmId;
+        $("#count1").text(data.inventory.materialList.material1);
+        $("#count2").text(data.inventory.materialList.material2);
+        $("#count3").text(data.inventory.materialList.material3);
     });  
 }
 
@@ -47,23 +50,28 @@ function SendRequest(){
             requestObj[this.id] = $("#" + this.id + "Inp").val();
         }
     });
+    var options =  {
+        firmId: firmId,
+        //price: $("#requestPrice").val(),
+        material1: $("#material1Inp").val(),
+        material2: $("#material2Inp").val(),
+        material3: $("#material3Inp").val()
+    };
     console.log(requestObj);
-    $.post('/materialRequest', { firmId: firmId, request: requestObj, price: $("#requestPrice").val() }, function(data){
+    $.post('/materialRequest', options, function(data){
         if (data.success) alert("заявка отправлена"); 
     });
 }
 
-function GetPrices(){
-    var htmlTable = '<table>';
-    htmlTable += '<th>material</th><th>price</th>';
+function startProject(){
+    var options = {
+        firmId: firmId,
+        objectName: $("#nameObject").val(),
+        square: $("#squareObject").val(),
+        pricePerMetre: $("#pricePerMetre").val()
+    };
     
-    $.post('/checkPrices', {}, function(data){
-        console.log(data);
-        $("#contractorPrice1").text(data.material1);
-        $("#contractorPrice2").text(data.material2);
-        $("#contractorPrice3").text(data.material3);
+    $.post('/startBuilding', options, function(data){
+        if (data.success) alert("проект прорабу отправлено");
     });
-        //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3
-        
-        
 }

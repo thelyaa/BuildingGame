@@ -37,6 +37,7 @@ function Role(name, multi) {
     this.userId;
     this.multi = multi;
     this.idList = [];
+    this.balance = 0;
     this.setUser = function(userId) {
         if(this.multi) {
             this.idList.push(userId);
@@ -44,6 +45,29 @@ function Role(name, multi) {
             this.userId = userId;
         }
     }
+}
+
+var projectId = 0;
+var projectList = [];
+
+function Parter(id, projectId, part) {
+    this.id = id;
+    this.projectId = projectId;
+    this.part = part;
+}
+
+function Building(name, firmId, square, pricePerMetre) {
+    this.name = name;
+    this.globalId = projectId++;
+    this.id = getFirmById(firmId).projects.length;
+    this.firmName = getFirmById(firmId).name;
+    this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша, 6 - строительство завершено
+    this.status = 0; // 0 - идет строительство, 1 - построен
+    this.ownerFirmId = firmId;
+    this.partersList = [];
+    this.square = square;
+    this.pricePerMetre = pricePerMetre;
+    projectList.push(this);
 }
 
 function Inventory() {
@@ -76,6 +100,7 @@ function Firm(name, directorId) {
     this.debt = 0;
     this.balance = SETTINGS.DEFAULT_FIRM_CAPITAL;
     this.inventory = new Inventory();
+    this.projects = [];
     this.roles = {
         director: new Role("Директор"),
         foreman: new Role("Прораб"),
@@ -174,6 +199,15 @@ app.post('/roles', function(req, res) {
 });
 
 /**
+ * firmId, objectName, square, pricePerMetre
+ */
+app.post('/startBuilding', function(req, res) {
+    var firm = getFirmById(req.body.firmId);
+    firm.projects.push(new Building(req.body.objectName, firm.firmId, req.body.square, req.body.pricePerMetre));
+    res.send({success: true});
+});
+
+/**
  * Запрос АПИ
  * Получение списка фирм
  */
@@ -205,6 +239,10 @@ app.post('/giveMoneyToFirm', function(req, res) {
     var firm = getFirmById(req.body.firmId);
     firm.debt += Number(req.body.value);
     firm.balance += Number(req.body.value);
+})
+
+app.post('/getFirmById', function(req, res) {
+   res.send(getFirmById(req.body.firmId));
 });
 
 app.post('/getFirmByDirectorId', function(req, res) {
@@ -225,14 +263,20 @@ function Request(firmId, materials, price) {
         material2: materials.material2,
         material3: materials.material3
     };
-    this.status = 0; // 0 - не выдано, 1 - выдано, 2 - отклонено
+    this.status = 3; // 0 - не рассмотрена, 1 - выдано, 2 - отклонено, 3 - на заполнении (бухгалтера)
     this.price = price;
     currentContractorRequests.push(this);
 }
 
+app.post('/setFirmMaterial', function(req, res) {
+    var firm = getFirmById(req.body.firmId);
+    firm.inventory.take("material" + req.body.idMaterial, req.body.count);
+    res.send({success: true});
+})
+
 app.post('/materialRequest', function(req, res) {
-    console.log(req.body.request);
-    new Request(req.body.firmId, req.body.request, req.body.price);
+    new Request(req.body.firmId, req.body, req.body.price);
+
     res.send({success: true});
 });
 
@@ -241,8 +285,27 @@ app.post('/checkRequests', function(req, res) {
 });
 
 app.post('/setRequestStatus', function(req, res) {
-    currentContractorRequests[req.body.requestId].status = req.body.status;
-    res.send({success: true});
+    var curRequest = currentContractorRequests[req.body.requestId];
+    if(req.body.status == 1) {
+        if(curRequest.firm.balance < curRequest.price) {
+            res.send({error: "У фирмы недостаточно денег"});
+        } else {
+            curRequest.status = req.body.status;
+            curRequest.firm.balance -= Number(curRequest.price);
+            mainRoles.contractor.balance += Number(curRequest.price);
+            curRequest.firm.inventory.add("material1", curRequest.materials.material1);
+            curRequest.firm.inventory.add("material2", curRequest.materials.material2);
+            curRequest.firm.inventory.add("material3", curRequest.materials.material3);
+            res.send({success: true});
+        }
+    } else if (req.body.status == 2){
+        curRequest.status = req.body.status;
+        res.send( {success: true});
+    } else if(req.body.status == 0) {
+        curRequest.price = req.body.price;
+        curRequest.status = req.body.status;
+        res.send({success: true});
+    }
 })
 
 var currentPrices = {};
@@ -260,12 +323,46 @@ app.post('/checkPrices', function(req, res) {
     res.send(currentPrices);
 })
 
+app.post('/setProjectStatus', function(req, res) {
+    var firm = getFirmById(req.body.firmId);
+    firm.projects[req.body.idProject].status = req.body.status;
+    res.send({success: true});
+})
+
+app.post('/getAllProjects', function(req,res) {
+    res.send(projectList);
+})
+
+app.post('/buySector', function(req, res) {
+    var curFirm = getFirmById(projectList[req.body.globalId].firmId);
+    var curProj = projectList[req.body.globalId];
+    curFirm.balance += req.body.part * curProj.pricePerMetre;
+    curFirm.projects[req.body.projectId].partersList.push(new Parter(req.body.parterId, req.body.projectId, req.body.part));
+    res.send({success: true});
+})
+
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
 });
 
+app.get('/builderScreen', function(req, res){
+    res.render('builderScreen');
+});
+
+app.get('/financerScreen', function(req, res){
+    res.render('financerScreen');
+});
+
 app.get('/contractorScreen', function(req, res){
     res.render('contractorScreen');
+});
+
+app.get('/foremanScreen', function(req, res){
+    res.render('foremanScreen');
+});
+
+app.get('/customerScreen', function(req, res){
+    res.render('customerScreen');
 });
 
 app.listen(3000);
