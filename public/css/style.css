@@ -129,6 +129,28 @@
     text-align: center;
 }
 
+#firmInfo input[type="button"] {
+    width: 100px;
+    height: 40px;
+    white-space: pre-line;
+}
+
+#firmMaterials {
+    display: flex;
+    justify-content: center;
+}
+
+#firmMaterials input {
+    width: 100px;
+    height: 30px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.foremanScreen_block .air{
+    max-width: 670px;
+}
+
 * {
     box-sizing: border-box;
 }
