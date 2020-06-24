@@ -227,6 +227,10 @@ app.post('/materialRequest', function(req, res) {
     res.send({success: true});
 });
 
+app.post('/checkRequests', function(req, res) {
+    res.send(currentContractorRequests);
+});
+
 var currentPrices = {};
 
 app.post('/setPrices', function(req,res) {
