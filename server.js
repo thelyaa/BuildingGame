@@ -230,16 +230,24 @@ app.post('/materialRequest', function(req, res) {
 var currentPrices = {};
 
 app.post('/setPrices', function(req,res) {
-    currentPrices = req.body.prices;
+    console.log(req.body);
+    currentPrices.material1 = req.body.material1;
+    currentPrices.material2 = req.body.material2;
+    currentPrices.material3 = req.body.material3;
     res.send({success: true});
 })
 
 app.post('/checkPrices', function(req, res) {
+    console.log(currentPrices);
     res.send(currentPrices);
 })
 
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
+});
+
+app.get('/contractorScreen', function(req, res){
+    res.render('contractorScreen');
 });
 
 app.listen(3000);

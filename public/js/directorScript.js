@@ -41,19 +41,29 @@ setInterval(GetFirmInfo, 10000);
 
 function SendRequest(){
     var requestObj = {};
+    
     $(".field").each(function() {
         if (this.checked) {
             requestObj[this.id] = $("#" + this.id + "Inp").val();
         }
     });
     console.log(requestObj);
-    $.post('/materialRequest', { firmId: firmId, request: requestObj}, function(data){
+    $.post('/materialRequest', { firmId: firmId, request: requestObj, price: $("#requestPrice").val() }, function(data){
         if (data.success) alert("заявка отправлена"); 
     });
 }
 
 function GetPrices(){
-    $.post("/checkPrices", {}, function(data){
+    var htmlTable = '<table>';
+    htmlTable += '<th>material</th><th>price</th>';
+    
+    $.post('/checkPrices', {}, function(data){
+        console.log(data);
+        $("#contractorPrice1").text(data.material1);
+        $("#contractorPrice2").text(data.material2);
+        $("#contractorPrice3").text(data.material3);
+    });
+        //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3
         
-    })
+        
 }

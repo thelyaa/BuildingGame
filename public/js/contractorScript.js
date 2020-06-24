@@ -5,7 +5,7 @@ function SetPrices(){
         material3: $("#material3").val(),
     };
     
-    $.post('/setPrices', { prices: materialPrices }, function(data){
+    $.post('/setPrices', materialPrices, function(data){
         if (data.success) alert("Цены установлены");
     })
 }
