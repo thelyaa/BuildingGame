@@ -1,5 +1,7 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Ожидание</title>
 </head>
 
@@ -7,11 +9,22 @@
     #start {
         visibility: hidden;
     }
+
 </style>
 
-<div>
-    <p>Ожидание остальных игроков</p>
-    <input type="button" value="Начать игру" id="start" onclick="startGame()">
+<div class="air">
+    <div class="form-inner waitingScreen_block">
+        <div class="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+        <div>
+            <h2>Ожидание остальных игроков</h2>
+            <input type="button" value="Начать игру" id="start" onclick="startGame()">
+        </div>
+        <div class="form-row"></div>
+    </div>
 </div>
-
 <script src="../js/waitingRoomScript.js"></script>

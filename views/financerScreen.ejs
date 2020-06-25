@@ -4,42 +4,44 @@
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
-<div class="air">
-    <div class="form-inner">
-        <div class="stripes-block"></div>
-        <div id="firmInfo"></div>
-        <div class="form-row"></div>
-        <div class="form-row-icon">
-            <i class="fa fa-search"></i>
-            <input type="button" onclick="GetRequest()" value="Рассмотреть заявку">
-        </div>
-        <div id="main"></div>
-        <table class="financerScreen_table">
-            <th>Материал</th>
-            <th>Цены поставщика</th>
-            <tr>
-                <td><label>Материал1</label></td>
-                <td>
-                    <div id="contractorPrice1"></div>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Материал2</label></td>
-                <td>
-                    <div id="contractorPrice2"></div>
-                </td>
-            </tr>
-            <tr>
-                <td><label>Материал3</label></td>
-                <td>
-                    <div id="contractorPrice3"></div>
-                </td>
-            </tr>
-        </table>
-        <div class="form-row"></div>
-        <div class="form-row-icon">
-            <i class="fa fa-info-circle"></i>
-            <input type="button" onclick="GetPrices()" value="Узнать цены на материалы">
+<div class="financerScreen_allContentBlock">
+    <div class="air">
+        <div class="form-inner">
+            <div class="stripes-block"></div>
+            <div id="firmInfo"></div>
+            <div class="form-row"></div>
+            <div class="form-row-icon">
+                <i class="fa fa-search"></i>
+                <input type="button" onclick="GetRequest()" value="Рассмотреть заявку">
+            </div>
+            <div id="main"></div>
+            <table class="financerScreen_table">
+                <th>Материал</th>
+                <th>Цены поставщика</th>
+                <tr>
+                    <td><label>Материал1</label></td>
+                    <td>
+                        <div id="contractorPrice1"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Материал2</label></td>
+                    <td>
+                        <div id="contractorPrice2"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Материал3</label></td>
+                    <td>
+                        <div id="contractorPrice3"></div>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-row"></div>
+            <div class="form-row-icon">
+                <i class="fa fa-info-circle"></i>
+                <input type="button" onclick="GetPrices()" value="Узнать цены на материалы">
+            </div>
         </div>
     </div>
 </div>
