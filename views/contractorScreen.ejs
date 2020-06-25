@@ -4,26 +4,28 @@
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
-<div class="air">
-    <div class="form-inner">
-        <div class="stripes-block"></div>
-        <div id="main">
-            <div class="contractorScreen_materialBlock">
-                <p>Материал1</p><input type="number" value="100" id="material1">
-                <p>Материал2</p><input type="number" value="100" id="material2">
-                <p>Материал3</p><input type="number" value="100" id="material3">
+<div class="contractorScreen_content">
+    <div class="air">
+        <div class="form-inner">
+            <div class="stripes-block"></div>
+            <div id="main">
+                <div class="contractorScreen_materialBlock">
+                    <p>Материал1</p><input type="number" value="100" id="material1">
+                    <p>Материал2</p><input type="number" value="100" id="material2">
+                    <p>Материал3</p><input type="number" value="100" id="material3">
+                </div>
+            </div>
+            <div id="requests"></div>
+            <div class="form-row"></div>
+            <div class="form-row-icon">
+                <i class="fa fa-gavel"></i>
+                <input type="button" onclick="SetPrices()" value="Установить цены">
+            </div>
+            <div class="form-row-icon">
+                <i class="fa fa-refresh"></i>
+                <input type="button" onclick="RefreshRequests()" value="Обновить заявки">
             </div>
         </div>
-        <div class="form-row"></div>
-        <div class="form-row-icon">
-            <i class="fa fa-gavel"></i>
-            <input type="button" onclick="SetPrices()" value="Установить цены">
-        </div>
-        <div class="form-row-icon">
-            <i class="fa fa-refresh"></i>
-            <input type="button" onclick="RefreshRequests()" value="Обновить заявки">
-        </div>
-        <div id="requests"></div>
     </div>
 </div>
 <script src="../js/contractorScript.js"></script>

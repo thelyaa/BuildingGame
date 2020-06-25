@@ -92,6 +92,10 @@
     height: 40px;
 }
 
+.builderScreen_tableBlock table {
+    width: 100%
+}
+
 .builderScreen_tableBlock td input{
     width: 100px;
     height: 30px;
@@ -190,7 +194,7 @@
 }
 
 .contractorScreen_materialBlock {
-    padding: 10px 0px 10px 25px;
+    padding: 10px 0px 20px 218px;
     width: 291px;
     display: flex;
     flex-wrap: wrap;
@@ -204,6 +208,10 @@
 .contractorScreen_materialBlock input {
     margin-top: 10px;
     font-size: 24px;
+}
+
+.contractorScreen_content .air{
+    max-width: 781px;
 }
 
 .financerScreen_allContentBlock .air {
