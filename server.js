@@ -390,6 +390,7 @@ app.post('/buyProject', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].ownerFirmId);
     var curProj = projectList[req.body.globalId];
     var curPrice = req.body.price;
+    sellRequestList[req.body.sellRequestId].isSelled = true;
     curProj.selledPrice = curPrice;
     curFirm.balance += Number(curPrice);
     customerList[req.body.customerId].budget -= curPrice;
@@ -400,6 +401,7 @@ app.post('/buyProject', function(req, res) {
 
 var sellRequestList = [];
 function SellRequest(customerId, price, objectGlobalId, firm, proj) {
+    this.sellRequestId = sellRequestList.length;
     this.customerId = customerId;
     this.price = price;
     this.objectGlobalId = objectGlobalId;
