@@ -273,7 +273,7 @@ function Request(firmId, materials, price) {
         material6: materials.material6,
         material7: materials.material7,
     };
-    this.status = 3; // 0 - не рассмотрена, 1 - выдано, 2 - отклонено, 3 - на заполнении (бухгалтера)
+    this.status = 3; // 0 - не рассмотрена, 1 - выдано, 2 - отклонено, 3 - на заполнении (бухгалтера), 4 - выдано
     this.price = price;
     currentContractorRequests.push(this);
 }
@@ -317,6 +317,9 @@ app.post('/setRequestStatus', function(req, res) {
         res.send( {success: true});
     } else if(req.body.status == 0) {
         curRequest.price = req.body.price;
+        curRequest.status = req.body.status;
+        res.send({success: true});
+    } else {
         curRequest.status = req.body.status;
         res.send({success: true});
     }
