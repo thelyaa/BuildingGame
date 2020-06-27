@@ -36,6 +36,10 @@ function GetFirmInfo(){
         $("#count1").text(data.inventory.materialList.material1);
         $("#count2").text(data.inventory.materialList.material2);
         $("#count3").text(data.inventory.materialList.material3);
+        $("#count4").text(data.inventory.materialList.material4);
+        $("#count5").text(data.inventory.materialList.material5);
+        $("#count6").text(data.inventory.materialList.material6);
+        $("#count7").text(data.inventory.materialList.material7);
     });  
 }
 
@@ -55,7 +59,11 @@ function SendRequest(){
         //price: $("#requestPrice").val(),
         material1: $("#material1Inp").val(),
         material2: $("#material2Inp").val(),
-        material3: $("#material3Inp").val()
+        material3: $("#material3Inp").val(),
+        material4: $("#material4Inp").val(),
+        material5: $("#material5Inp").val(),
+        material6: $("#material6Inp").val(),
+        material7: $("#material7Inp").val()
     };
     console.log(requestObj);
     $.post('/materialRequest', options, function(data){

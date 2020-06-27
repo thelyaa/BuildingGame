@@ -24,7 +24,7 @@ function eraseCookie(name) {
 }
 
 var firmId;
-var statuses = ['', 'вырыть котлован', 'заложить фундамент', 'построить стены', 'построить крышу', ''];
+var statuses = ['', 'заложить фундамент', 'построить стены', 'построить крышу', ''];
 
 function GetFirmInfo(){
     firmId = getCookie("firmId");
@@ -34,13 +34,18 @@ function GetFirmInfo(){
         $("#count1").text(data.inventory.materialList.material1);
         $("#count2").text(data.inventory.materialList.material2);
         $("#count3").text(data.inventory.materialList.material3);
+        $("#count4").text(data.inventory.materialList.material4);
+        $("#count5").text(data.inventory.materialList.material5);
+        $("#count6").text(data.inventory.materialList.material6);
+        $("#count7").text(data.inventory.materialList.material7);
         htmlPage += '<table>';
         htmlPage += '<th>Название проекта</th><th>Статус</th><th>Площадь</th>';
         data.projects.forEach(function(item){
-            if (item.status > 0 && item.status < 5){
+            if (item.status > 0 && item.status < 4){
                 htmlPage += '<tr><td>' + item.name + '</td><td>' + statuses[item.status] + '</td><td>' + item.square + '</td></tr>';
                 
             }
+            else htmlPage += '<tr><td>' + item.name + '</td><td></td><td>' + item.square + '</td></tr>';
         });
         htmlPage += '</table>';
         $("#firmInfo").html(htmlPage);
