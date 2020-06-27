@@ -196,6 +196,7 @@ app.post('/setRole', function(req, res){
     } else if(req.body.role === "customer") {
         new Customer(req.body.userId);
         mainRoles[req.body.role].setUser(req.body.userId);
+        res.send({success: true});
     } else if(req.body.role !== "director") {
         if(req.body.firmId) {
             if(getFirmById(req.body.firmId).roles[req.body.role].userId) {
