@@ -390,6 +390,7 @@ app.post('/buyProject', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].ownerFirmId);
     var curProj = projectList[req.body.globalId];
     var curPrice = req.body.price;
+    curProj.selledPrice = curPrice;
     curFirm.balance += Number(curPrice);
     customerList[req.body.customerId].budget -= curPrice;
     curProj.isSelled = true;
