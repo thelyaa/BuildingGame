@@ -231,8 +231,12 @@ app.post('/checkStatus', function(req, res) {
    res.send({gameStarted: isGameStarted});
 });
 
+var startCustomerCapital = 5000000;
 app.post('/startGame', function(req, res) {
     isGameStarted = true;
+    if(req.body.status.customerBudget > 0) {
+        startCustomerCapital = req.body.status.customerBudget;
+    }
 });
 
 app.get('/bankerScreen', function(req, res){
@@ -273,7 +277,7 @@ function Request(firmId, materials, price) {
         material6: materials.material6,
         material7: materials.material7,
     };
-    this.status = 3; // 0 - не рассмотрена, 1 - выдано, 2 - отклонено, 3 - на заполнении (бухгалтера), 4 - выдано
+    this.status = 3; // 0 - не рассмотрена, 1 - одобрено, 2 - отклонено, 3 - на заполнении (бухгалтера), 4 - выдано
     this.price = price;
     currentContractorRequests.push(this);
 }
