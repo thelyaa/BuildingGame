@@ -394,6 +394,28 @@ app.post('/buySector', function(req, res) {
     res.send({success: true});
 })
 
+
+var sellRequestList = [];
+function SellRequest(customerId, price, objectGlobalId, firm) {
+    this.customerId = customerId;
+    this.price = price;
+    this.objectGlobalId = objectGlobalId;
+    this.firmName = firm.name;
+    this.firmId = firm.firmId;
+    sellRequestList.push(this);
+}
+
+app.post('/sellObject', function(req, res) {
+    var curFirm = getFirmById(projectList[req.body.globalId].firmId);
+    var curProj = projectList[req.body.globalId];
+    new SellRequest(req.body.customerId, req.body.priceForSell, req.body.globalId, curFirm);
+    res.send({success: true});
+})
+
+app.post('/getSellRequests', function(req, res) {
+    res.send(sellRequestList);
+})
+
 app.get('/directorScreen', function(req, res){
     res.render('directorScreen');
 });
