@@ -104,8 +104,10 @@ function Firm(name, directorId) {
     this.roles = {
         director: new Role("Директор"),
         foreman: new Role("Прораб"),
+        manager: new Role("Менеджер по продажам", true),
         financer: new Role("Бухгалтер"),
-        builders: new Role("Строитель", true)
+        builders: new Role("Строитель", true),
+        driver: new Role("Водитель")
     }
     this.roles.director.setUser(directorId);
 
@@ -363,6 +365,14 @@ app.get('/foremanScreen', function(req, res){
 
 app.get('/customerScreen', function(req, res){
     res.render('customerScreen');
+});
+
+app.get('/managerScreen', function(req, res){
+    res.render('managerScreen');
+});
+
+app.get('/driverScreen', function(req, res){
+    res.render('driverScreen');
 });
 
 app.listen(3000);
