@@ -62,7 +62,7 @@ function Building(name, firmId, square, pricePerMetre) {
     this.globalId = projectId++;
     this.id = getFirmById(firmId).projects.length;
     this.firmName = getFirmById(firmId).name;
-    this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - вырыт котлован, 3 - заложен фундамент, 4 - построены стены, 5 - построена крыша, 6 - строительство завершено
+    this.stage = 0; // -1 - проект отклонен, 0 - проект на утверждении, 1 - проект начат, 2 - заложен фундамент, 3 - построены стены, 4 - построена крыша, 5 - строительство завершено, 6 - продано
     this.status = 0; // 0 - идет строительство, 1 - построен
     this.ownerFirmId = firmId;
     this.partersList = [];
@@ -386,11 +386,13 @@ app.post('/getCustomerInfo', function(req, res) {
     res.send(customerList);
 });
 
-app.post('/buySector', function(req, res) {
+app.post('/buyProject', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].firmId);
     var curProj = projectList[req.body.globalId];
-    curFirm.balance += req.body.part * curProj.pricePerMetre;
-    curFirm.projects[req.body.id].partersList.push(new Parter(req.body.parterId, req.body.id, req.body.part));
+    var curPrice = req.body.price;
+    curFirm.balance += curPrice;
+    customerList[req.body.customerId].budget -= curPrice;
+    curProj.isSelled = true;
     res.send({success: true});
 })
 
