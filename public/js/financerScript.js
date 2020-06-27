@@ -24,13 +24,21 @@ function eraseCookie(name) {
 }
 
 function GetRequest(){
+    var materialsName = ['Фундамент', 'Cтены', 'Крыша', 'Степлер', 'Скотч', 'Скрепки', 'Скобы для степлера'];
     $.post('/checkRequests', {}, function(data){
         var htmlTable = '<table>';
-        htmlTable += '<th>Фирма</th><th>Бюджет</th><th>Материал 1</th><th>Материал 2</th><th>Материал 3</th><th>Управление</th>';
+        htmlTable += '<th>Фирма</th><th>Бюджет</th><th>Материалы</th><th>Управление</th>';
         data.forEach(function(item){
             console.log(item);
             if (item.status == 3 && item.firm.firmId == getCookie("firmId")) {
-                htmlTable += '<tr><td>' + item.firm.name + '</td><td>' + item.firm.balance + '</td><td>' + item.materials.material1 + '</td><td>' + item.materials.material2 + '</td><td>' + item.materials.material3 + '</td>';
+                htmlTable += '<tr><td>' + item.firm.name + '</td><td>' + item.firm.balance + '</td>';
+                htmlTable += '<td>';
+                
+                for (var i = 1; i < 8; i++){
+                    if (item.materials["material"+i] > 0) 
+                        htmlTable += materialsName[i-1] + ':' + item.materials["material"+i] + '<br>';
+                }
+                htmlTable += '</td>';
                 htmlTable += '<td><input type="button" value="✓" onclick="SendRequest('+item.id+')"><input type="number" id="input'+ item.id +'" value="0"></td></tr>';           
             }
         });
@@ -65,6 +73,10 @@ function GetPrices(){
         $("#contractorPrice1").text(data.material1);
         $("#contractorPrice2").text(data.material2);
         $("#contractorPrice3").text(data.material3);
+        $("#contractorPrice4").text(data.material4);
+        $("#contractorPrice5").text(data.material5);
+        $("#contractorPrice6").text(data.material6);
+        $("#contractorPrice7").text(data.material7);
     });
         //ФОРМИРУЕМ ТУТ ТАБЛИЧКУ С ЦЕНАМИ ПО material1, material2, material3        
 }

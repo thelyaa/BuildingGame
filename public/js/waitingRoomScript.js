@@ -25,6 +25,7 @@ function eraseCookie(name) {
 
 if (getCookie("role") === "banker") {
     $("#start").css("visibility", "visible");
+    $("#bankerOptions").css("visibility", "visible");
     };
 
 function checkStatus() {
@@ -43,7 +44,7 @@ function checkStatus() {
 }
 
 function startGame() {
-    $.post("/startGame");
+    $.post("/startGame", {customerBudget: $("#customerBudget").val()});
     if (getCookie("role") === "banker") {
         window.location.href = "/bankerScreen";
     }

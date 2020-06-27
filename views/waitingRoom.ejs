@@ -6,7 +6,7 @@
 </head>
 
 <style>
-    #start {
+    #start, #bankerOptions {
         visibility: hidden;
     }
 
@@ -23,6 +23,7 @@
         </div>
         <div>
             <h2>Ожидание остальных игроков</h2>
+            <div id="bankerOptions"><label>Стартовый капитал покупателей</label><input type="number" id="customerBudget"></div>
             <input type="button" value="Начать игру" id="start" onclick="startGame()">
         </div>
         <div class="form-row"></div>
