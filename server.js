@@ -331,17 +331,17 @@ app.post('/setRequestStatus', function(req, res) {
             curRequest.status = req.body.status;
             curRequest.firm.balance -= Number(curRequest.price);
             mainRoles.contractor.balance += Number(curRequest.price);
-            curRequest.firm.inventory.add("material1", curRequest.materials.material1);
-            curRequest.firm.inventory.add("material2", curRequest.materials.material2);
-            curRequest.firm.inventory.add("material3", curRequest.materials.material3);
-            curRequest.firm.inventory.add("material4", curRequest.materials.material4);
-            curRequest.firm.inventory.add("material5", curRequest.materials.material5);
-            curRequest.firm.inventory.add("material6", curRequest.materials.material6);
-            curRequest.firm.inventory.add("material7", curRequest.materials.material7);
             res.send({success: true});
         }
     } else if (req.body.status == 2){
         curRequest.status = req.body.status;
+        curRequest.firm.inventory.add("material1", curRequest.materials.material1);
+        curRequest.firm.inventory.add("material2", curRequest.materials.material2);
+        curRequest.firm.inventory.add("material3", curRequest.materials.material3);
+        curRequest.firm.inventory.add("material4", curRequest.materials.material4);
+        curRequest.firm.inventory.add("material5", curRequest.materials.material5);
+        curRequest.firm.inventory.add("material6", curRequest.materials.material6);
+        curRequest.firm.inventory.add("material7", curRequest.materials.material7);
         res.send( {success: true});
     } else if(req.body.status == 0) {
         curRequest.price = req.body.price;
