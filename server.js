@@ -387,7 +387,7 @@ app.post('/getCustomerInfo', function(req, res) {
 });
 
 app.post('/buyProject', function(req, res) {
-    var curFirm = getFirmById(projectList[req.body.globalId].firmId);
+    var curFirm = getFirmById(projectList[req.body.globalId].ownerFirmId);
     var curProj = projectList[req.body.globalId];
     var curPrice = req.body.price;
     curFirm.balance += curPrice;
