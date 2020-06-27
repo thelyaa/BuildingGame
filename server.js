@@ -74,7 +74,11 @@ function Inventory() {
     this.materialList = {
         material1: 0,
         material2: 0,
-        material3: 0
+        material3: 0,
+        material4: 0,
+        material5: 0,
+        material6: 0,
+        material7: 0,
     }
 
     this.add = function(name, count) {
@@ -263,7 +267,11 @@ function Request(firmId, materials, price) {
     this.materials = {
         material1: materials.material1,
         material2: materials.material2,
-        material3: materials.material3
+        material3: materials.material3,
+        material4: materials.material4,
+        material5: materials.material5,
+        material6: materials.material6,
+        material7: materials.material7,
     };
     this.status = 3; // 0 - не рассмотрена, 1 - выдано, 2 - отклонено, 3 - на заполнении (бухгалтера)
     this.price = price;
@@ -298,6 +306,10 @@ app.post('/setRequestStatus', function(req, res) {
             curRequest.firm.inventory.add("material1", curRequest.materials.material1);
             curRequest.firm.inventory.add("material2", curRequest.materials.material2);
             curRequest.firm.inventory.add("material3", curRequest.materials.material3);
+            curRequest.firm.inventory.add("material4", curRequest.materials.material4);
+            curRequest.firm.inventory.add("material5", curRequest.materials.material5);
+            curRequest.firm.inventory.add("material6", curRequest.materials.material6);
+            curRequest.firm.inventory.add("material7", curRequest.materials.material7);
             res.send({success: true});
         }
     } else if (req.body.status == 2){
@@ -317,6 +329,10 @@ app.post('/setPrices', function(req,res) {
     currentPrices.material1 = req.body.material1;
     currentPrices.material2 = req.body.material2;
     currentPrices.material3 = req.body.material3;
+    currentPrices.material4 = req.body.material4;
+    currentPrices.material5 = req.body.material5;
+    currentPrices.material6 = req.body.material6;
+    currentPrices.material7 = req.body.material7;
     res.send({success: true});
 })
 
