@@ -1,12 +1,12 @@
 function ProjectsInfo(){
     var statuses = ['', '', 'заложен фундамент', 'построены стены', 'построена крыша', 'дом построен'];
-    $.post('/getAllProjects', {}, function(data){
+    $.post('/getSellRequests', {}, function(data){
         console.log(data);
         var htmlTable = '<table>';
-        htmlTable += '<th>Номер проекта</th><th>Название проекта</th><th>Фирма-исполнитель</th><th>Площадь</th><th>Себестоимость</th><th>Статус</th><th>Приобрести</th>';
+        htmlTable += '<th>Номер проекта</th><th>Название проекта</th><th>Фирма-исполнитель</th><th>Площадь</th><th>Статус</th><th>Цена</th><th>Приобрести</th>';
         data.forEach(function(item){
-            htmlTable += '<tr><td>' + item.globalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + item.pricePerMetre + '</td><td>' + statuses[item.status] + '</td>';
-            htmlTable += '<td><input type="button" value="Приобрести" onclick="BuySector('+item.globalId+','+ item.id+')"></td>';
+            htmlTable += '<tr><td>' + item.globalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + statuses[item.status] + '</td>';
+            htmlTable += '<td>' + item.price + '</td><td><input type="button" value="Приобрести" onclick="BuyObject('+item.globalId+','+item.price+')"><input type="button" value="Отклонить" onclick="DenyObject('+item.globalId+','+ item.id+')"></td>';
         });
         htmlTable += '</table>';
         $("#projects").html(htmlTable);
@@ -15,14 +15,13 @@ function ProjectsInfo(){
 
 ProjectsInfo();
 
-function BuySector(globalId, id){
+function BuyObject(globalId, price){
     var options = {
-        parterId: getCookie("userId"),
+        customerId: getCookie("userId"),
         globalId: globalId,
-        id: id,
-        part: $("#buyingSquare").val()
+        price: price
     };
-    $.post('/buySector', options, function(data){
+    $.post('/buyProject', options, function(data){
         if (data.success) alert("приобретено");
     });
 }
@@ -64,4 +63,8 @@ function GetCustomerInfo(){
             }
         })    
     })
+}
+
+function CheckSellRequest(){
+    
 }

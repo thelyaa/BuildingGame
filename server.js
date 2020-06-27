@@ -398,19 +398,24 @@ app.post('/buyProject', function(req, res) {
 
 
 var sellRequestList = [];
-function SellRequest(customerId, price, objectGlobalId, firm) {
+function SellRequest(customerId, price, objectGlobalId, firm, proj) {
     this.customerId = customerId;
     this.price = price;
     this.objectGlobalId = objectGlobalId;
     this.firmName = firm.name;
     this.firmId = firm.firmId;
+    this.square = proj.square;
+    this.name = proj.name;
+    this.status = proj.status;
     sellRequestList.push(this);
 }
 
 app.post('/sellObject', function(req, res) {
-    var curFirm = getFirmById(projectList[req.body.globalId].firmId);
+    var curFirm = getFirmById(projectList[req.body.globalId].ownerFirmId);
     var curProj = projectList[req.body.globalId];
-    new SellRequest(req.body.customerId, req.body.priceForSell, req.body.globalId, curFirm);
+//    console.log(projectList);
+//    console.log(req.body.globalId);
+    new SellRequest(req.body.customerId, req.body.priceForSell, req.body.globalId, curFirm, curProj);
     res.send({success: true});
 })
 
