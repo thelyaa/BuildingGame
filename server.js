@@ -21,7 +21,7 @@ var SETTINGS = {
 }
 
 var mainRoles = {
-    customer: new Role("Покупатель"),
+    customer: new Role("Покупатель", true),
     banker: new Role('Банкир'),
     contractor: new Role('Поставщик')
 }
@@ -41,6 +41,7 @@ function Role(name, multi) {
     this.setUser = function(userId) {
         if(this.multi) {
             this.idList.push(userId);
+            return this.idList.length;
         } else {
             this.userId = userId;
         }
@@ -157,6 +158,22 @@ function getFirmById(id) {
     return firmList[id];
 }
 
+var customerList = [];
+
+function Customer(userId) {
+    this.userId = userId;
+    this.budget = -1;
+    this.customerId = customerList.length;
+
+    this.getBudget = function() {
+        if(this.budget === -1) {
+            this.budget = startCustomerCapital;
+        }
+        return this.budget;
+    }
+    customerList.push(this);
+}
+
 /**
  * Запрос АПИ
  * Установка роли
@@ -176,6 +193,9 @@ app.post('/setRole', function(req, res){
         else {
             res.send({error: "У вас уже есть созданная фирма"});
         }
+    } else if(req.body.role === "customer") {
+        new Customer(req.body.userId);
+        mainRoles[req.body.role].setUser(req.body.userId);
     } else if(req.body.role !== "director") {
         if(req.body.firmId) {
             if(getFirmById(req.body.firmId).roles[req.body.role].userId) {
@@ -234,8 +254,11 @@ app.post('/checkStatus', function(req, res) {
 var startCustomerCapital = 5000000;
 app.post('/startGame', function(req, res) {
     isGameStarted = true;
-    if(req.body.status.customerBudget > 0) {
-        startCustomerCapital = req.body.status.customerBudget;
+    customerList.forEach((item) => {
+        item.getBudget();
+    });
+    if(req.body.customerBudget > 0) {
+        startCustomerCapital = req.body.customerBudget;
     }
 });
 
@@ -356,7 +379,11 @@ app.post('/setProjectStatus', function(req, res) {
 
 app.post('/getAllProjects', function(req,res) {
     res.send(projectList);
-})
+});
+
+app.post('/getCustomerInfo', function(req, res) {
+    res.send(customerList);
+});
 
 app.post('/buySector', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].firmId);
