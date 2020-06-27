@@ -390,16 +390,22 @@ app.post('/buyProject', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].ownerFirmId);
     var curProj = projectList[req.body.globalId];
     var curPrice = req.body.price;
-    curProj.selledPrice = curPrice;
-    curFirm.balance += Number(curPrice);
-    customerList[req.body.customerId].budget -= curPrice;
-    curProj.isSelled = true;
-    res.send({success: true});
+    if(customerList[req.body.sellRequestId].isSelled) {
+        res.send({error: "Объект уже продан!"});
+    } else {
+        sellRequestList[req.body.sellRequestId].isSelled = true;
+        curProj.selledPrice = curPrice;
+        curFirm.balance += Number(curPrice);
+        customerList[req.body.customerId].budget -= curPrice;
+        curProj.isSelled = true;
+        res.send({success: true});
+    }
 })
 
 
 var sellRequestList = [];
 function SellRequest(customerId, price, objectGlobalId, firm, proj) {
+    this.sellRequestId = sellRequestList.length;
     this.customerId = customerId;
     this.price = price;
     this.objectGlobalId = objectGlobalId;
