@@ -57,7 +57,7 @@ function SendResult(){
         resultRole = currentField
     }
     
-    setCookie("firmId", firmId);
+    setCookie("firmId", String(firmId));
     var firmName = document.getElementById("firmName").value;
     $.post('/setRole', { userId: getCookie('userId'), role : resultRole, firmName: firmName, firmId: firmId },
         function(returnedData){
@@ -65,6 +65,9 @@ function SendResult(){
                 alert(returnedData.error);
             }
             else{
+                if(resultRole === "director") {
+                    setCookie("firmId", String(returnedData.firmId))
+                }
                 setCookie("role", resultRole, 12);
                 window.location.href = "/waitingRoom";
             }

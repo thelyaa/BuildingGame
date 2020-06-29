@@ -187,8 +187,7 @@ app.post('/setRole', function(req, res){
                 flag = true;
         });
         if (!flag) {
-            new Firm(req.body.firmName, req.body.userId);
-            res.send({success: true});
+            res.send({success: true, firmId: new Firm(req.body.firmName, req.body.userId).firmId});
         }
         else {
             res.send({error: "У вас уже есть созданная фирма"});
