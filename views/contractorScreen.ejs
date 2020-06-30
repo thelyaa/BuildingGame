@@ -10,25 +10,44 @@
             <div class="stripes-block"></div>
             <div id="main">
                 <div class="contractorScreen_materialBlock">
-                    <p>Фундамент</p><input type="number" value="100" id="material1">
-                    <p>Стены</p><input type="number" value="100" id="material2">
-                    <p>Крыша</p><input type="number" value="100" id="material3">
-                    <p>Степлер</p><input type="number" value="100" id="material4">
-                    <p>Скотч</p><input type="number" value="100" id="material5">
-                    <p>Скрепки</p><input type="number" value="100" id="material6">
-                    <p>Скобы для степлера</p><input type="number" value="100" id="material7">
+                    <span>Фундамент</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material1"></div>
+                    <span>Стены</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material2"></div>
+                    <span>Крыша</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material3"></div>
+                    <span>Степлер</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material4"></div>
+                    <span>Скотч</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material5"></div>
+                    <span>Скрепки</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material6"></div>
+                    <span>Скобы для степлера</span>
+                    <div class="contractorScreen_materialBlockItem"><input type="number" value="100" id="material7"></div>
                 </div>
             </div>
+            <div class="form-row"></div>
             <div id="requests"></div>
             <div class="form-row"></div>
-            <div class="form-row-icon">
-                <i class="fa fa-gavel"></i>
-                <input type="button" onclick="SetPrices()" value="Установить цены">
+            <div class="buttonMenuBlock">
+                <div class="button-menu" onclick="SetPrices()">
+                    <div class="icon">
+                        <i class="fa fa-gavel"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Установить цены</span>
+                    </div>
+                </div>
+                <div class="button-menu" onclick="RefreshRequests()">
+                    <div class="icon">
+                        <i class="fa fa-refresh"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Обновить заявки</span>
+                    </div>
+                </div>
             </div>
-            <div class="form-row-icon">
-                <i class="fa fa-refresh"></i>
-                <input type="button" onclick="RefreshRequests()" value="Обновить заявки">
-            </div>
+            <div class="form-row"></div>
         </div>
     </div>
 </div>

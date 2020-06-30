@@ -10,11 +10,18 @@
             <div class="stripes-block"></div>
             <div id="firmInfo"></div>
             <div class="form-row"></div>
-            <div class="form-row-icon">
-                <i class="fa fa-search"></i>
-                <input type="button" onclick="GetRequest()" value="Рассмотреть заявку">
+            <div class="buttonMenuBlock">
+                <div class="button-menu" onclick="GetRequest()">
+                    <div class="icon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Рассмотреть заявку</span>
+                    </div>
+                </div>
             </div>
             <div id="main"></div>
+            <div class="form-row"></div>
             <table class="financerScreen_table">
                 <th>Материал</th>
                 <th>Цены поставщика</th>
@@ -37,6 +44,7 @@
                     </td>
                 </tr>
             </table>
+            <div class="form-row"></div>
             <table class="financerScreen_table">
                 <th>Инструмент</th>
                 <th>Цены поставщика</th>
@@ -66,10 +74,17 @@
                 </tr>
             </table>
             <div class="form-row"></div>
-            <div class="form-row-icon">
-                <i class="fa fa-info-circle"></i>
-                <input type="button" onclick="GetPrices()" value="Узнать цены на материалы">
+            <div class="buttonMenuBlock">
+                <div class="button-menu" onclick="GetPrices()">
+                    <div class="icon">
+                        <i class="fa fa-info-circle"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Узнать цены на материалы</span>
+                    </div>
+                </div>
             </div>
+            <div class="form-row"></div>
         </div>
     </div>
 </div>

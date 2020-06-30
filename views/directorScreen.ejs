@@ -52,7 +52,7 @@
                         <div id="count6"></div>
                     </td>
                 </tr>
-                 <tr>
+                <tr>
                     <td>Скобы для степлера</td>
                     <td>
                         <div id="count7"></div>
@@ -85,25 +85,25 @@
                     <td class='td-count'><input id="material3Inp" type="number"></td>
 
                 </tr>
-                 <tr>
+                <tr>
                     <td><input type="checkbox" class="field" id="material4"></td>
                     <td><label>Степлер</label></td>
                     <td class='td-count'><input id="material4Inp" type="number"></td>
 
                 </tr>
-                 <tr>
+                <tr>
                     <td><input type="checkbox" class="field" id="material5"></td>
                     <td><label>Скотч</label></td>
                     <td class='td-count'><input id="material5Inp" type="number"></td>
 
                 </tr>
-                 <tr>
+                <tr>
                     <td><input type="checkbox" class="field" id="material6"></td>
                     <td><label>Скрепки</label></td>
                     <td class='td-count'><input id="material6Inp" type="number"></td>
 
                 </tr>
-                 <tr>
+                <tr>
                     <td><input type="checkbox" class="field" id="material7"></td>
                     <td><label>Скобы для степлера</label></td>
                     <td class='td-count'><input id="material7Inp" type="number"></td>
@@ -114,9 +114,17 @@
         </div>
         <div class="form-row">
         </div>
-        <div class="form-row-icon">
-            <i class="fa fa-paper-plane"></i>
-            <input type="button" onclick="SendRequest()" value="Отправить заявку">
+        <div class="buttonMenuBlock">
+            <div class="button-menu" onclick="SendRequest()">
+                <div class="icon">
+                    <i class="fa fa-paper-plane"></i>
+                </div>
+                <div class="icon-text">
+                    <span>Отправить заявку</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
         </div>
         <div id="newObject" class="directorScreen_newObject">
             <div><span>Название объекта</span><input type="text" id="nameObject"></div>
@@ -125,9 +133,17 @@
         </div>
         <div class="form-row">
         </div>
-        <div class="form-row-icon">
-            <i class="fa fa-suitcase"></i>
-            <input type="button" onclick="startProject()" value="Отправить прорабу">
+        <div class="buttonMenuBlock">
+            <div class="button-menu" onclick="startProject()">
+                <div class="icon">
+                    <i class="fa fa-suitcase"></i>
+                </div>
+                <div class="icon-text">
+                    <span>Отправить прорабу</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
         </div>
     </div>
 </div>

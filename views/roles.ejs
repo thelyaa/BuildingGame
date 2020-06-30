@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 
-    <body>
+<body>
+    <div class="air fit-content">
         <div class="form-inner">
             <div class="stripes-block"></div>
             <div class="form-row">
@@ -16,36 +17,59 @@
             </div>
             <div class="Roles_mainMenuListItem">
                 <div class="itemRole">
-                    <input type="radio" class="field" id="customer" name="field">
-                    <div>Покупатель</div>
+                    <div class="itemContent">
+                        <input type="radio" class="field" id="customer" name="field">
+                        <span>Покупатель</span>
+                    </div>
                 </div>
                 <div class="itemRole">
-                    <input type="radio" class="field" id="banker" name="field">
-                    <div>Банкир</div>
+                    <div class="itemContent">
+                        <input type="radio" class="field" id="banker" name="field">
+                        <span>Банкир</span>
+                    </div>
                 </div>
                 <div class="itemRole">
-                    <input type="radio" class="field" id="contractor" name="field">
-                    <div>Поставщик</div>
+                    <div class="itemContent">
+                        <input type="radio" class="field" id="contractor" name="field">
+                        <span>Поставщик</span>
+                    </div>
                 </div>
                 <div class="itemRole">
-                    <input type="radio" class="field" id="director" name="field" onchange="DirectorClick()">
-                    <div>Директор</div>
+                    <div class="itemContent">
+                        <input type="radio" class="field" id="director" name="field" onchange="DirectorClick()">
+                        <span>Директор</span>
+                    </div>
                 </div>
                 <div class="itemRole">
-                    <div id="firmList"></div>
+                    <div class="itemContent">
+                        <div id="firmList"></div>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
             </div>
-            <div class="form-row-icon">
-                <i class="fa fa-hand-o-up"></i>
-                <input type="button" onclick="SendResult()" value="Выбрать">
+            <div class="buttonMenuBlock">
+                <div class="button-menu" onclick="SendResult()">
+                    <div class="icon">
+                        <i class="fa fa-hand-o-up"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Выбрать</span>
+                    </div>
+                </div>
+                <div class="button-menu" onclick="GetFirmList()">
+                    <div class="icon">
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Получить список фирм</span>
+                    </div>
+                </div>
             </div>
-            <div class="form-row-icon">
-                <i class="fa fa-book"></i>
-                <input type="button" onclick="GetFirmList()" value="Получить список фирм">
+            <div class="form-row">
             </div>
         </div>
-    </body>
+    </div>
+</body>
 
 </html>

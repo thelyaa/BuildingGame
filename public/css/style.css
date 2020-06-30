@@ -16,16 +16,31 @@
 }
 
 .Roles_mainMenuListItem input {
-    width: 30px;
-    height: 30px;
+    width: 83px;
+    height: 80px;
 }
 
 .Roles_mainMenuListItem label {
     margin-bottom: 50px;
 }
 
+.Roles_mainMenuListItem .itemContent {
+    display: flex;
+    align-items: center;
+}
+
+.itemContent span {
+    font-size: 48px;
+}
+
 .Roles_itemCompanyName {
     padding: 10px 10px 10px 0px;
+}
+
+.buttonMenuBlock {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
 }
 
 #firmList {
@@ -38,13 +53,19 @@
     padding-top: 5px;
 }
 
+#firmProjects table {
+    width: 100%;
+}
+
 #main {
     width: 100%;
 }
 
 #main span {
+    padding-top: 10px;
     font-weight: 700;
     font-size: 24px;
+    text-align: center;
 }
 
 .directorScreen_companyInfo {
@@ -52,9 +73,19 @@
     flex-wrap: wrap;
 }
 
+.directorScreen_materialsTable td label {
+    font-size: 24px;
+    padding: 0px 10px 0px 10px;
+}
+
 .directorScreen_companyInfo span {
     padding-top: 10px;
     margin-left: 25px;
+}
+
+.contractorScreen_materialBlockItem {
+    display: flex;
+    justify-content: center;
 }
 
 .directorScreen_materialsTable {
@@ -63,21 +94,61 @@
     margin-top: 20px;
 }
 
+.directorScreen_materialsTable td {
+    font-size: 24px;
+}
+
 .directorScreen_requestHeader {
     display: flex;
     justify-content: center;
 }
 
-.directorScreen_newObject {
-    width: 150px;
+.directorScreen_newObject span {
+    font-size: 34px;
+}
+
+.button-menu {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    background: #909090;
+}
+
+.button-menu span {
+    width: 100%;
+    font-size: 36px;
+}
+
+.button-menu .fa {
+    font-size: 150px;
+    color: #E4E3DF;
+}
+
+.button-menu .icon {
+    width: 100%;
+    text-align: center;
+}
+
+.button-menu .icon-text {
+    text-align: center;
+}
+
+.directorScreen_newObject {
+    width: 100%;
+    display: flex;
     margin: auto;
+    flex-direction: column;
 }
 
 .directorScreen_newObject input {
-    width: 137px;
-    height: 32px;
+    margin-left: 10px;
+    width: 275px;
+    font-size: 48px;
+    height: 100px;
 }
 
 .directorScreen_newObject div {
@@ -85,8 +156,8 @@
 }
 
 .directorScreen_materialsTable td .field {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
 }
 
 .builderScreen_tableBlock table {
@@ -99,12 +170,15 @@
     margin-bottom: 5px;
 }
 
+.customerScreen_blockContent table {
+    width: 100%;
+}
+
 .itemRole {
     display: flex;
-    width: 130px;
     flex-wrap: nowrap;
     align-items: center;
-    padding-top: 10px
+    padding-top: 10px;
 }
 
 .directorScreen_firmName {
@@ -122,10 +196,7 @@
     padding: 10px 0px 10px 20px;
 }
 
-.bankerScreen_block table {
-    display: flex;
-    justify-content: center;
-}
+.bankerScreen_block table {width: 100%;}
 
 #firmInfo table {
     width: 100%;
@@ -146,6 +217,16 @@
     justify-content: center;
 }
 
+#firmMaterials table {
+    width: 100%;
+}
+
+#requests table {
+    /* display: flex; */
+    width: 100%;
+    justify-content: center;
+}
+
 #firmMaterials input {
     width: 100px;
     height: 30px;
@@ -153,15 +234,30 @@
     margin-bottom: 5px;
 }
 
+#bankerOptions input {
+    width: 200px;
+    height: 100px;
+    margin-left: 5;
+    font-size: 24px;
+    text-align: center;
+}
+
+#bankerOptions label {
+    font-size: 24px;
+}
+
 #start {
-    margin-left: 31%;
+    margin-top: 15px;
     width: 152px;
     height: 80px;
     font-size: 24px;
 }
 
-.foremanScreen_block .air {
-    max-width: 670px;
+.waitingScreen_startBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .financerScreen_block {
@@ -185,17 +281,20 @@
 }
 
 .financerScreen_table {
-    display: flex;
-    justify-content: center;
-    padding: 19px 10px 0px 10px;
+    width: 100%;
 }
 
 .contractorScreen_materialBlock {
     margin: auto;
     padding: 10px 0px 20px 0px;
-    width: 300px;
+    width: 400px;
+    justify-content: space-between;
+    flex-direction: column;
     display: flex;
     flex-wrap: wrap;
+}
+.directorScreen_materialsTable table {
+    width: 100%;
 }
 
 .contractorScreen_materialBlock p {
@@ -205,25 +304,21 @@
 
 .contractorScreen_materialBlock input {
     margin-top: 10px;
+    height: 100px;
     font-size: 24px;
 }
 
-.contractorScreen_content .air {
-    min-width: fit-content;
-    max-width: fit-content;
-}
-
 .fit-content {
-    min-width: fit-content;
-    max-width: fit-content;
+    /* min-width: fit-content; */
+    /* max-width: fit-content; */
 }
 
 .driverScreen_mainBlock table {
     margin: auto;
+    width: 100%;
 }
 
 .financerScreen_allContentBlock .air {
-    max-width: fit-content;
 }
 
 .financerScreen_allContentBlock td input[type="button"] {
@@ -245,9 +340,7 @@
 }
 
 .air {
-    max-width: 450px;
-    margin: 50px auto 0;
-    padding: 20px;
+    width: 100%;
     background: #E4E3DF;
     font-family: 'Oswald', sans-serif;
 }
@@ -280,14 +373,17 @@
 }
 
 .form-row {
-    position: relative;
-    padding: 10px;
+    /* position: relative; */
+    /* padding: 10px; */
     border-bottom: 2px solid #909090;
     padding-bottom: 20px;
 }
 
 .form-row label {
     display: block;
+    text-align: center;
+    font-size: 48px;
+    padding-bottom: 10px;
 }
 
 .form-row input {
@@ -296,6 +392,8 @@
     padding: 0;
     line-height: 30px;
     border-width: 0;
+    height: 100px;
+    font-size: 48px;
     border: background: #E4E3DF;
 }
 
@@ -369,8 +467,9 @@ td:first-child {
 }
 
 .td-count input {
-    width: 100px;
-    height: 35px;
+    width: 175px;
+    height: 75px;
+    font-size: 24px;
 }
 
 .cssload-thecube {
