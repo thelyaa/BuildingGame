@@ -461,7 +461,6 @@ app.get('/driverScreen', function(req, res){
     res.render('driverScreen');
 });
 var hostname = '127.0.0.1';
-app.listen(80, hostname, function(inp) {
+app.listen(3000, hostname, function() {
     console.log("Server started");
-    console.log(inp);
 });
