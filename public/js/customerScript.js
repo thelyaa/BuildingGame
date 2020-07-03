@@ -1,13 +1,19 @@
 function ProjectsInfo(){
     var statuses = ['', '', 'заложен фундамент', 'построены стены', 'построена крыша', 'дом построен'];
+    var userId = getCookie("userId");
     $.post('/getSellRequests', {}, function(data){
         console.log(data);
         var htmlTable = '<table>';
         htmlTable += '<th>Номер проекта</th><th>Название проекта</th><th>Фирма-исполнитель</th><th>Площадь</th><th>Статус</th><th>Цена</th><th>Приобрести</th>';
         data.forEach(function(item){
+            if (item.customerId == userId){
+                
+            
             htmlTable += '<tr><td>' + item.globalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + statuses[item.status] + '</td>';
-            htmlTable += '<td>' + item.price + '</td><td><input type="button" value="Приобрести" onclick="BuyObject('+item.globalId+','+item.price+')"><input type="button" value="Отклонить" onclick="DenyObject('+item.globalId+','+ item.id+')"></td>';
-        });
+            if (!item.isSelled) 
+                htmlTable += '<td>' + item.price + '</td><td><input type="button" value="Приобрести" onclick="BuyObject('+item.sellRequestId+','+item.objectGlobalId+','+item.price+')"><input type="button" value="Отклонить" onclick="DenyObject('+item.globalId+','+ item.id+')"></td>';
+            else htmlTable += '<td>' + item.price + '</td><td>Куплено</td></tr>';
+        }});
         htmlTable += '</table>';
         $("#projects").html(htmlTable);
     });
@@ -15,11 +21,12 @@ function ProjectsInfo(){
 
 ProjectsInfo();
 
-function BuyObject(globalId, price){
+function BuyObject(sellRequestId, globalId, price){
     var options = {
         customerId: getCookie("userId"),
         globalId: globalId,
-        price: price
+        price: price,
+        sellRequestId: sellRequestId
     };
     $.post('/buyProject', options, function(data){
         if (data.success) alert("приобретено");

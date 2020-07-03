@@ -48,12 +48,13 @@ function ProjectsInfo(){
             var rowIndex = 0;
             data.forEach(function(item){
             if (item.firmId == firmId){
-                htmlTable += '<tr><td>' + item.globalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + item.pricePerMetre + '</td><td>' + statuses[item.status] + '</td><td><input type="number" id="priceForSell'+rowIndex+'"></td>';
+                htmlTable += '<tr><td>' + item.globalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + item.pricePerMetre + '</td><td>' + statuses[item.status] + '</td>';
                 if (item.isSelled){
-                    htmlTable += '<td>Продано</td></tr>';
+                    
+                    htmlTable += '<td>'+item.selledPrice +'</td><td>Продано</td></tr>';
                 }
                 else {
-                    htmlTable += '<td><select id="selectId'+rowIndex+'">';
+                    htmlTable += '<td><input type="number" id="priceForSell'+rowIndex+'"></td><td><select id="selectId'+rowIndex+'">';
                     customerData.forEach(function(customerItem){
                     
                         htmlTable += '<option value="'+customerItem.customerId+'">' + customerItem.customerId + '</option>';
