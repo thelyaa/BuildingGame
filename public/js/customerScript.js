@@ -9,7 +9,7 @@ function ProjectsInfo(){
             if (item.customerId == userId){
                 
             
-            htmlTable += '<tr><td>' + item.globalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + statuses[item.status] + '</td>';
+            htmlTable += '<tr><td>' + item.objectGlobalId + '</td><td>' + item.name + '</td><td>' + item.firmName + '</td><td>' + item.square + '</td><td>' + statuses[item.status] + '</td>';
             if (!item.isSelled) 
                 htmlTable += '<td>' + item.price + '</td><td><input type="button" value="Приобрести" onclick="BuyObject('+item.sellRequestId+','+item.objectGlobalId+','+item.price+')"><input type="button" value="Отклонить" onclick="DenyObject('+item.globalId+','+ item.id+')"></td>';
             else htmlTable += '<td>' + item.price + '</td><td>Куплено</td></tr>';
