@@ -141,6 +141,15 @@ app.get('/roles', function(req, res) {
  * Запрос получения главной страницы
  */
 app.get('/', function (req, res) {
+    res.render('auth', {
+        title: 'RolesTest'
+    });
+});
+
+/**
+ * Запрос получения главной страницы
+ */
+app.get('/lobby', function (req, res) {
     res.render('roles', {
         title: 'RolesTest'
     });
@@ -332,7 +341,7 @@ app.post('/setRequestStatus', function(req, res) {
             mainRoles.contractor.balance += Number(curRequest.price);
             res.send({success: true});
         }
-    } else if (req.body.status == 2){
+    } else if (req.body.status == 2 || req.body.status == 4){
         curRequest.status = req.body.status;
         curRequest.firm.inventory.add("material1", curRequest.materials.material1);
         curRequest.firm.inventory.add("material2", curRequest.materials.material2);
@@ -419,11 +428,18 @@ function SellRequest(customerId, price, objectGlobalId, firm, proj) {
 app.post('/sellObject', function(req, res) {
     var curFirm = getFirmById(projectList[req.body.globalId].ownerFirmId);
     var curProj = projectList[req.body.globalId];
-//    console.log(projectList);
-//    console.log(req.body.globalId);
     new SellRequest(req.body.customerId, req.body.priceForSell, req.body.globalId, curFirm, curProj);
     res.send({success: true});
 })
+
+var userPassword = 'utmnstudent';
+app.post('/auth', function(req, res) {
+    if(req.body.pass === userPassword) {
+        res.send({success: true, nextPage: 'lobby'});
+    } else {
+        res.send({error: "Неверный пароль!"});
+    }
+});
 
 app.post('/getSellRequests', function(req, res) {
     res.send(sellRequestList);
@@ -460,6 +476,7 @@ app.get('/managerScreen', function(req, res){
 app.get('/driverScreen', function(req, res){
     res.render('driverScreen');
 });
+
 var hostname = '127.0.0.1';
 app.listen(3000, hostname, function() {
     console.log("Server started");
