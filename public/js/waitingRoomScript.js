@@ -36,6 +36,27 @@ function checkStatus() {
                 if (getCookie("role") === "director") {
                     window.location.href = "/directorScreen";
                 }
+                if (getCookie("role") === "contractor") {
+                    window.location.href = "/contractorScreen";
+                }
+                if (getCookie("role") === "customer") {
+                    window.location.href = "/customerScreen";
+                }
+                if (getCookie("role") === "foreman") {
+                    window.location.href = "/foremanScreen";
+                }
+                if (getCookie("role") === "driver") {
+                    window.location.href = "/driverScreen";
+                }
+                if (getCookie("role") === "manager") {
+                    window.location.href = "/managerScreen";
+                }
+                if (getCookie("role") === "financer") {
+                    window.location.href = "/financerScreen";
+                }
+                if (getCookie("role") === "builder") {
+                    window.location.href = "/builderScreen";
+                }
                 //window.location.href = "/"
             }
         else console.log("gameNotStarted");
@@ -44,7 +65,7 @@ function checkStatus() {
 }
 
 function startGame() {
-    $.post("/startGame", {customerBudget: $("#customerBudget").val()});
+    $.post("/startGame", {customerBudget: $("#customerBudget").val(), password: });
     if (getCookie("role") === "banker") {
         window.location.href = "/bankerScreen";
     }
