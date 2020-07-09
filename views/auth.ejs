@@ -1,8 +1,27 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
-<div>
-    <input type="password" id="password"><br>
-    <input type="button" value="Войти" onclick="EnterToGame()">
+<div class="air">
+    <div class="form-inner">
+        <div class="stripes-block"></div>
+        <div class="authScreen_block">
+            <div>
+                <input type="password" id="password" class="authScreen_password">
+                <div class="button-menu" onclick="EnterToGame()">
+                    <div class="icon">
+                        <i class="fa fa-user-circle"></i>
+                    </div>
+                    <div class="icon-text">
+                        <span>Войти</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+        </div>
+    </div>
+
 </div>
 <script src="../js/passwordScript.js"></script>
